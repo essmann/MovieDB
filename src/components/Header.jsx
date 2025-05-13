@@ -5,6 +5,7 @@ import userIcon from "../assets/user_icon_white.svg";
 import searchIcon from "../assets/search.svg"
 import arrowDown from "../assets/arrow_down_white.svg"
 import listIcon from "../assets/list_icon_white.svg"
+import "../css/Header.css"
 function Header() {
     const username = "essmann";
   return (
