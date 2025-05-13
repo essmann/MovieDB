@@ -1,0 +1,82 @@
+@import "tailwindcss";
+:root{
+    --darkest-color: #000000;
+    --imdb-gray: #121212;
+    --imdb-white: #FFFFFF;
+}
+body{
+    background: #000000;
+}
+.searchContainer{
+    display: flex;
+    align-items: center;
+    border: solid black 1px;
+    
+    max-width: 650px;
+    flex: 1;
+   
+
+}
+.searchContainer > input, .searchContainer{
+    background: #FFFFFF;
+    padding: 2px;
+    border-radius: 8px;
+    margin-left: 7px;
+    
+}
+
+#header-box{
+    align-items: center;
+    max-width: 1280px;
+    width: 100%;
+}
+#header{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    background: #121212;
+}
+.menuText{
+    color: var(--imdb-white);
+    margin-bottom: 2px;
+
+}
+#username{
+    color: var(--imdb-white);
+}
+#logo-container{
+    flex-direction: row-reverse;
+}
+@media only screen and (max-width: 1000px) {
+  .menuText{
+    display: none;
+  }
+  #logo-container{
+    flex-direction: row;
+  }
+  #watchlist{
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 1200px) {
+  .searchContainer{
+    max-width: 400px;
+  }
+}
+
+@media only screen and (max-width: 660px) {
+  .searchContainer *:not(img)  {
+    
+    display: none;
+    
+  }
+  .searchContainer{
+    background: var(--imdb-gray);
+    border: none;
+  }
+  #username{
+    display: none;
+  }
+}
+/*  */

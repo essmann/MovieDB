@@ -1,16 +1,12 @@
-
-import './App.css'
-import './components/Header.jsx';
-import Header from './components/Header.jsx';
+import Header from "./components/Header";
 function App() {
-  
-
+  //const name = "volhosis";
   return (
-    <Header>
-
-    </Header>
-  )
+    <>
+    <Header/>
     
+    </>
+  )
 }
 
-export default App
+export default App;
