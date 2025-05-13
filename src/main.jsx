@@ -1,30 +1,17 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import './index.css'
-import './css/Header.css'
-import HomePage from './pages/HomePage';
+import { StrictMode } from 'react';
+import { createRoot } from 'react-dom/client';
+import './index.css';
+import './css/Header.css';
+import App from './App';
 
-import {
-  createBrowserRouter,
-  RouterProvider,
-} from "react-router";
+// A function to check login status
 
-
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <HomePage/>
-  },
-  {
-    path: "/test",
-    element: <><h1>Hello World</h1></>
-  },
-]);
+// Root component that holds the global state for `isLoggedIn`
 
 const root = document.getElementById("root");
 
 createRoot(root).render(
   <StrictMode>
-     <RouterProvider router={router} />
+    <App /> {/* The App component is now the root and manages the state */}
   </StrictMode>,
-)
+);
