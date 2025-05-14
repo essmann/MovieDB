@@ -18,10 +18,24 @@ body{
    
 
 }
+.searchSuggestions{
+
+  position:absolute;
+  top: 10%;
+  
+  
+ 
+}
 #searchBox{
   width: 100%;
 }
+
+#searchInput:focus{
+ outline: none;
+ box-shadow: none; 
+}
 .searchContainer.parent{
+ 
   padding: 0;
   display: flex;
   flex-direction: column;
@@ -35,22 +49,23 @@ body{
 }
 #suggestionsContainer{
  
-  position: absolute;
+  
   background: var(--imdb-gray);
   display: flex;
   flex-direction: column;
-  text-align: center;
+
   z-index: 1;
   border-radius: 8px;
-  margin-left: 7px;
-  top:10%;
+  
+ 
   width: 650px;
   box-sizing: border-box;
   
 
 }
 #suggestionsContainer * {
-  min-height: 80px;
+  
+  min-height: 40px;
   border: 1px solid black;
 }
 #suggestionsContainer *:hover{

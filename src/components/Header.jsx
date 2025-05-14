@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import imdbLogo from "../assets/IMDB_Logo_2016.svg";
 import burgerIcon from "../assets/white_hamburg.svg";
 import userIcon from "../assets/user_icon_white.svg";
@@ -8,7 +8,17 @@ import listIcon from "../assets/list_icon_white.svg";
 import "../css/Header.css";
 import SuggestionCard from "./SuggestionCard";
 
+
+
+function handleSearchInput(e, setShowItems){
+  console.log(e.target.key);
+  setShowItems([1,2,3,4]);
+  
+}
 function Header(props) {
+  
+  const [showItems, setShowItems] = useState([]);
+
   const username = "essmann";
   const loggedIn = props.loggedIn;
 
@@ -33,12 +43,22 @@ function Header(props) {
               <span className="font-bold">All</span>
               <img src={arrowDown} width={24} height={24} />
             </div>
-            <input placeholder="search IMDb" className="ml-1" />
+            <input placeholder="search IMDb" className="ml-1" id="searchInput" onInput={(e)=>handleSearchInput(e, setShowItems)}/>
 
             <img src={searchIcon} className="ml-auto" />
+            
+              
+              <div className="searchSuggestions">
+                
+                {showItems.map((item, index) => (
+                  <SuggestionCard key={index} />
+                ))}
+                
+              </div>
+           
           </div>
-          <SuggestionCard/>;
-         
+          
+          
         </div>
         <div id="loginContainer" className="ml-4 bl-1 flex items-center">
           <div id="userContainer" className="flex">
