@@ -2,7 +2,6 @@ import { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 
-
 function App() {
   const [counter, setCounter] = useState(0);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -17,7 +16,7 @@ function App() {
             <HomePage
               counter={counter}
               setCounter={setCounter}
-              loggedIn={isLoggedIn}
+              isLoggedIn={isLoggedIn} 
               setIsLoggedIn={setIsLoggedIn}
             />
           }
@@ -26,9 +25,9 @@ function App() {
           path="/test"
           element={
             <div>
-              loggedIn={isLoggedIn}
-              handleLogin={() => setIsLoggedIn(true)}
-              handleLogout={() => setIsLoggedIn(false)}
+              {/* Make sure to display or use the login status properly */}
+              <p>Logged In: {isLoggedIn ? "Yes" : "No"}</p>
+              {/* If needed, you can handle login/logout here */}
             </div>
           }
         />

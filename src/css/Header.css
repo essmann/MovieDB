@@ -3,6 +3,7 @@
     --darkest-color: #000000;
     --imdb-gray: #121212;
     --imdb-white: #FFFFFF;
+    --imdb-suggestion-hover: #313131;
 }
 body{
     background: #000000;
@@ -10,19 +11,51 @@ body{
 .searchContainer{
     display: flex;
     align-items: center;
-    border: solid black 1px;
     
+    height: 100%;
     max-width: 650px;
     flex: 1;
    
 
 }
-.searchContainer > input, .searchContainer{
+#searchBox{
+  width: 100%;
+}
+.searchContainer.parent{
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+.searchContainer > input, #searchBox{
     background: #FFFFFF;
     padding: 2px;
     border-radius: 8px;
     margin-left: 7px;
     
+}
+#suggestionsContainer{
+ 
+  position: absolute;
+  background: var(--imdb-gray);
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  z-index: 1;
+  border-radius: 8px;
+  margin-left: 7px;
+  top:10%;
+  width: 650px;
+  box-sizing: border-box;
+  
+
+}
+#suggestionsContainer * {
+  min-height: 80px;
+  border: 1px solid black;
+}
+#suggestionsContainer *:hover{
+  
+  background: var(--imdb-suggestion-hover);
 }
 
 #header-box{
@@ -60,7 +93,7 @@ body{
 }
 
 @media only screen and (max-width: 1200px) {
-  .searchContainer{
+  .searchContainer, #suggestionsContainer{
     max-width: 400px;
   }
 }
