@@ -7,16 +7,28 @@ import arrowDown from "../assets/arrow_down_white.svg";
 import listIcon from "../assets/list_icon_white.svg";
 import "../css/Header.css";
 import SuggestionCard from "./SuggestionCard";
+import debounce from "../utility/debounce";
+import getMovie from "../api/getMovie";
 
-
-
-function handleSearchInput(e, setShowItems){
-  console.log(e.target.key);
-  setShowItems([1,2,3,4]);
-  
+async function handleSearchInput(e, setShowItems) {
+  console.log(e.target.value);
+  let query = e.target.value;
+  query = query.split(" ").join("+");
+  let response;
+  try {
+    response = await getMovie(query);
+  } catch {
+    return;
+  }
+  if (!response) {
+    return;
+  }
+  console.log(response["Search"]);
+  setShowItems(response["Search"]);
 }
 function Header(props) {
-  
+  console.log("Header refreshing");
+
   const [showItems, setShowItems] = useState([]);
 
   const username = "essmann";
@@ -43,22 +55,31 @@ function Header(props) {
               <span className="font-bold">All</span>
               <img src={arrowDown} width={24} height={24} />
             </div>
-            <input placeholder="search IMDb" className="ml-1" id="searchInput" onInput={(e)=>handleSearchInput(e, setShowItems)}/>
+            <input
+              placeholder="search IMDb"
+              className="ml-1"
+              id="searchInput"
+              onInput={debounce((e) => handleSearchInput(e, setShowItems), 150)}
+            />
 
             <img src={searchIcon} className="ml-auto" />
-            
-              
+
+            <div className="searchSuggestions">
               <div className="searchSuggestions">
-                
-                {showItems.map((item, index) => (
-                  <SuggestionCard key={index} />
-                ))}
-                
+                {showItems &&
+                  showItems.map((item, index) => (
+                    <SuggestionCard
+                      key={index}
+                      title={item.Title}
+                      year={item.Year}
+                      poster={item.Poster}
+                      type={item.Type}
+                      imdbId={item.imdbID}
+                    />
+                  ))}
               </div>
-           
+            </div>
           </div>
-          
-          
         </div>
         <div id="loginContainer" className="ml-4 bl-1 flex items-center">
           <div id="userContainer" className="flex">

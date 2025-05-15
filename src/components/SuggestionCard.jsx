@@ -1,15 +1,22 @@
 import "../css/Header.css"
 function SuggestionCard(props){
-    console.log("suggestioncard");
+   
+    console.log("suggestioncard: "+props);
+    console.log(typeof props);
+    console.log(props.title);
     return(
         <>
         
          <div id="suggestionsContainer" className="">
             <div id="suggestion_poster_container">
-                <img src="https://m.media-amazon.com/images/M/MV5BYTAxNTY2NjMtYjk5Yy00Nzg4LTkyMmItYmMzMDM2OWQ1ZGQ3XkEyXkFqcGc@._V1_SX300.jpg" 
+                <img src={props.poster} 
                     width={48} height={70}
                 />
 
+            </div>
+            <div id="movieInfoContainer" className="">
+                <div id="title">{props.title}</div>
+                <div id="year">{props.year}</div>
             </div>
           </div>
         </>
