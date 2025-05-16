@@ -11,19 +11,28 @@
 #parentContainer{
     display: flex;
     background: #1F1F1F !important;
-    
+    color: gray;
     justify-content: center;
 }
 #moviePageMovieContainer{
     margin-top:3rem;
     border: 1px solid blue;
-    max-width: 1280px;
-    min-width: 1280px;
+    min-width: 60%;
+    padding: 3rem;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    flex-direction: row;
+   
     
       
+    
+}
+#genreItem{
+    
+}
+#movieContainer{
+    
+}
+#moviePageMovieContainer{
     
 }
 #moviePageMovieContainer * {
@@ -44,9 +53,11 @@
     
 }
 
-#movie_page_movie_header_container{
+#movie_page_movie_header_container {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    margin-left: 2rem;
+    
     
 }
 #movie_page_rating_headers{
@@ -71,15 +82,38 @@
     margin-right: 8px;
 }
 #movieContainer{
-    
+   display: flex;
    
 }
 
 #genres{
     display: flex;
-    border: 1px solid white;
     
+    
+}
+#genreItem{
+    border: 0.5px solid var(--imdb-suggestion-hover);
+    border-radius: 8px;
+    padding: 1.5px;
+    
+}
+#genreItem:hover{
+    background: var(--imdb-suggestion-hover);
 }
 #genres * {
     margin-right: 8px;
+}
+
+#director, #writers, #actors{
+    margin-top: 1rem;
+    font-size: 1.2rem;
+}
+
+#director *, #writers *, #actors *  {
+    margin-right:1rem;
+    
+}
+#director > label, #writers > label, #actors > label{
+    font-weight: bold;
+    color: var(--imdb-white);
 }
