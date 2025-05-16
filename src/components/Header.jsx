@@ -24,7 +24,7 @@ const clickHandler = (event) => {
 };
 
   useEffect(() => {
-    console.log("useEffect!");
+    console.log("useEffect! I fire once");
     
 // Define the handler function once
 

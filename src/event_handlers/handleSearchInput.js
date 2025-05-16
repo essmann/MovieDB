@@ -1,4 +1,4 @@
-import getMovie from "../api/getMovie";
+import getMovies from "../api/getMovies";
 async function handleSearchInput(e, setShowItems) {
   console.log(e.target.value);
   let query = e.target.value;
@@ -6,7 +6,7 @@ async function handleSearchInput(e, setShowItems) {
   query = query.split(" ").join("+");
   let response;
   try {
-    response = await getMovie(query);
+    response = await getMovies(query);
   } catch {
     return;
   }

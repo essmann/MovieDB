@@ -1,0 +1,85 @@
+@import "tailwindcss";
+:root{
+    --darkest-color: #000000;
+    --imdb-gray: #121212;
+    --imdb-white: #FFFFFF;
+    --imdb-suggestion-hover: #313131;
+}
+
+
+
+#parentContainer{
+    display: flex;
+    background: #1F1F1F !important;
+    
+    justify-content: center;
+}
+#moviePageMovieContainer{
+    margin-top:3rem;
+    border: 1px solid blue;
+    max-width: 1280px;
+    min-width: 1280px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
+      
+    
+}
+#moviePageMovieContainer * {
+    
+}
+
+#movie_page_movie_info_container{
+    
+}
+
+#moviePageMovieInfo{
+    display: flex;
+    color: gray;
+    
+    
+}
+#movie_page_movie_info_container{
+    
+}
+
+#movie_page_movie_header_container{
+    display: flex;
+    justify-content: space-between;
+    
+}
+#movie_page_rating_headers{
+    display: flex;
+    
+}
+#movie_page_rating_headers * {
+    margin-right: 8px;
+    color: gray;
+}
+#movie_page_rating{
+    display: flex;
+}
+#movie_page_rating * {
+     margin-right: 8px;
+     color: gray;
+}
+#moviePageTitle{
+    color: var(--imdb-white);
+}
+#moviePageMovieInfo * {
+    margin-right: 8px;
+}
+#movieContainer{
+    
+   
+}
+
+#genres{
+    display: flex;
+    border: 1px solid white;
+    
+}
+#genres * {
+    margin-right: 8px;
+}
