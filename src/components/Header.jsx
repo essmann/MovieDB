@@ -17,17 +17,27 @@ function Header(props) {
   const suggestionsRef = useRef(null); //references the element
   const inputRef = useRef(null);
   const [suggestionVisible, setSuggestionVisible] = useState(true);
+
+
+const clickHandler = (event) => {
+  return handleClickHome(event, setSuggestionVisible, suggestionsRef, inputRef);
+};
+
   useEffect(() => {
     console.log("useEffect!");
+    
+// Define the handler function once
 
-    document.addEventListener("click", (event) => {
-      return handleClickHome(
-        event,
-        setSuggestionVisible,
-        suggestionsRef,
-        inputRef
-      );
-    });
+
+
+// Remove the listener
+//document.removeEventListener("click", clickHandler);
+
+// Add the listener
+document.addEventListener("click", clickHandler);
+  return () => {
+    document.removeEventListener("click", clickHandler);
+  }
     //[] mneans it will only run once, after render. we can add a listener then
   }, []);
   console.log("Header refreshing");
