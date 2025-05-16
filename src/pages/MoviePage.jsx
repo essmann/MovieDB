@@ -6,6 +6,7 @@ import getMovieById from "../api/getMovieById";
 import { useEffect } from "react";
 import { useState } from "react";
 import starIcon from "../assets/imdb_star_yellow.svg"
+import emptyStarIcon from "../assets/empy_blue_star.svg"
 
 function MoviePage() {
   let params = useParams(); //gets the search parameters
@@ -25,6 +26,11 @@ function MoviePage() {
   if (!movie) return <div>Loading...</div>;
 
   let genreArray = movie.Genre.split(",");
+  let actors = movie.Actors.split(",");
+  let writers = movie.Writer.split(",");
+  let directors = movie.Director.split(",");
+  movie.imdbVotes = `${Math.floor(parseInt(movie.imdbVotes))}K`
+
   return (
 
     <>
@@ -60,11 +66,14 @@ function MoviePage() {
                   </div>
                   <div>
                     <div>Your rating</div>
-                    <div>star</div>
+                    <div className="flex">
+                      <img src={emptyStarIcon} className="mb-2" width={24} height={24}/>
+                      <span>Rate</span>
+                    </div>
                   </div>
                   <div>
                     <div>Votes</div>
-                    <span className="text-xs">{movie.imdbVotes}</span>
+                    <span className="text-xs ml-1 ">{movie.imdbVotes}</span>
                   </div>
                 </div>
                 
@@ -76,21 +85,28 @@ function MoviePage() {
           </div>
           <div id="summary">{movie.Plot}</div>
           <div id="director" className="flex ">
-            <label>Directors: </label>
-            <div>Director</div>
-            <div>Sam Raimi</div>
+            <label>Director: </label>
+            {directors.map((director, key) => {
+              return <a  id="directorItem"key={key} href=""> {director} </a>;
+            })}
           </div>
           <div id="writers" className="flex ">
             <label>Writers: </label>
-            <div>Sam Raimi</div>
-            <div>Alvin Sargent</div>
-            <div>Ivan Raimi</div>
+            {writers.map((writer, key) => {
+              return key + 1 < writers.length
+                ? <a id="actorItem" key={key} href="">{writer},</a>
+                : <a key={key}>{writer}</a>;
+                            
+            })}
           </div>
           <div id="actors" className="flex ">
             <label>Actors: </label>
-            <div>Tobey Maguire</div>
-            <div>Kirsten Dunst</div>
-            <div>Topher Grace</div>
+            {actors.map((actor, key) => {
+              return key + 1 < actors.length
+                ? <a id="actorItem" key={key} href="">{actor},</a>
+                : <a key={key}>{actor}</a>;
+                            
+            })}
           </div>
         
               </div>
@@ -98,7 +114,14 @@ function MoviePage() {
             </div>
           </div>
         </div>
+          
+          <div id="nominations">
+            <div>
+              {movie.Awards}
+            </div>
+          </div>
       </div>
+       
     </>
   );
 }
