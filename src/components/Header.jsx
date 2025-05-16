@@ -8,46 +8,10 @@ import listIcon from "../assets/list_icon_white.svg";
 import "../css/Header.css";
 import SuggestionCard from "./SuggestionCard";
 import debounce from "../utility/debounce";
-import getMovie from "../api/getMovie";
+
 import { useRef } from "react";
-
-async function handleSearchInput(e, setShowItems) {
-  console.log(e.target.value);
-  let query = e.target.value;
-  console.log(`handleSearchInput: sending ${e.target.value} to getMovies`);
-  query = query.split(" ").join("+");
-  let response;
-  try {
-    response = await getMovie(query);
-  } catch {
-    return;
-  }
-  if (!response) {
-    return;
-  }
-  console.log(response["Search"]);
-  setShowItems(response["Search"]);
-}
-
-function handleClickGlobal(event, setSuggestionVisible, suggestionsRef, inputRef) {
-
-  if (
-    suggestionsRef.current &&
-    !suggestionsRef.current.contains(event.target)
-    && !inputRef.current.contains(event.target)
-  ) {
-    
-    setSuggestionVisible(false);
-    console.log("You have clicked outside of the input box or suggestions panel!");
-    
-  }
-  else if(suggestionsRef.current.contains(event.target) || inputRef.current.contains(event.target)){
-    setSuggestionVisible(true);
-    console.log("You have clicked the input box!");
-  }
-  
-  
-}
+import handleClickHome from "../event_handlers/handleClickHome";
+import handleSearchInput from "../event_handlers/handleSearchInput";
 
 function Header(props) {
   const suggestionsRef = useRef(null); //references the element
@@ -57,7 +21,12 @@ function Header(props) {
     console.log("useEffect!");
 
     document.addEventListener("click", (event) => {
-      return handleClickGlobal(event, setSuggestionVisible, suggestionsRef, inputRef);
+      return handleClickHome(
+        event,
+        setSuggestionVisible,
+        suggestionsRef,
+        inputRef
+      );
     });
     //[] mneans it will only run once, after render. we can add a listener then
   }, []);
