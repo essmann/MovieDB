@@ -12,7 +12,7 @@ import debounce from "../utility/debounce";
 import { useRef } from "react";
 import handleClickHome from "../event_handlers/handleClickHome";
 import handleSearchInput from "../event_handlers/handleSearchInput";
-
+import { Link } from "react-router";
 function Header(props) {
   const suggestionsRef = useRef(null); //references the element
   const inputRef = useRef(null);
@@ -60,10 +60,10 @@ document.addEventListener("click", clickHandler);
             />
             <span className="menuText mr-2">Menu</span>
           </div>
-            <a href={document.location.protocol + "//" +document.location.host + "/"}>
+            <Link to={`/`}>
                         <img src={imdbLogo} width={64} height={32} className="mr-3" />
 
-            </a>
+            </Link>
         </div>
         <div className="searchContainer parent" ref={inputRef}>
           <div className="searchContainer" id="searchBox">

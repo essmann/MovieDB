@@ -6,12 +6,14 @@ import getMovieById from "../api/getMovieById";
 import { useEffect } from "react";
 import { useState } from "react";
 import starIcon from "../assets/imdb_star_yellow.svg"
+
 function MoviePage() {
   let params = useParams(); //gets the search parameters
 
   const [movie, setMovie] = useState(null);
 
   useEffect(() => {
+    console.log("UseEffect from moviepage");
     async function fetchMovie() {
       let movie = await getMovieById(params.id);
       console.log("Fetched movie from getMovieById");
@@ -19,12 +21,14 @@ function MoviePage() {
       // Do something with movie here
     }
     fetchMovie();
-  }, []);
+  }, [params.id]);
   if (!movie) return <div>Loading...</div>;
 
   let genreArray = movie.Genre.split(",");
   return (
+
     <>
+    {    console.log("movie Page rendering!")}
       <Header />
       <div id="parentContainer">
         <div id="moviePageMovieContainer">

@@ -1,6 +1,5 @@
 import "../css/Header.css"
-const targetUrl = window.location.protocol + "//" + window.location.host +"/title/";
-
+import { Link } from "react-router";
 
 function SuggestionCard(props){
    
@@ -13,7 +12,7 @@ function SuggestionCard(props){
     return(
         <>
         
-         <a id="suggestionsContainer" className="" href={targetUrl +props.imdbId}>
+         <Link id="suggestionsContainer" className="" to={`/title/${props.imdbId}`}>
             <div id="suggestion_poster_container">
                 <img src={props.poster} 
                     width={48} height={70}
@@ -24,7 +23,7 @@ function SuggestionCard(props){
                 <div id="title">{props.title}</div>
                 <div id="year">{props.year}</div>
             </div>
-          </a>
+          </Link>
         </>
     )
 }
