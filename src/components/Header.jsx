@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import imdbLogo from "../assets/IMDB_Logo_2016.svg";
 import burgerIcon from "../assets/white_hamburg.svg";
 import userIcon from "../assets/user_icon_white.svg";
@@ -9,10 +9,12 @@ import "../css/Header.css";
 import SuggestionCard from "./SuggestionCard";
 import debounce from "../utility/debounce";
 import getMovie from "../api/getMovie";
+import { useRef } from "react";
 
 async function handleSearchInput(e, setShowItems) {
   console.log(e.target.value);
   let query = e.target.value;
+  console.log(`handleSearchInput: sending ${e.target.value} to getMovies`);
   query = query.split(" ").join("+");
   let response;
   try {
@@ -26,7 +28,39 @@ async function handleSearchInput(e, setShowItems) {
   console.log(response["Search"]);
   setShowItems(response["Search"]);
 }
+
+function handleClickGlobal(event, setSuggestionVisible, suggestionsRef, inputRef) {
+
+  if (
+    suggestionsRef.current &&
+    !suggestionsRef.current.contains(event.target)
+    && !inputRef.current.contains(event.target)
+  ) {
+    
+    setSuggestionVisible(false);
+    console.log("You have clicked outside of the input box or suggestions panel!");
+    
+  }
+  else if(suggestionsRef.current.contains(event.target) || inputRef.current.contains(event.target)){
+    setSuggestionVisible(true);
+    console.log("You have clicked the input box!");
+  }
+  
+  
+}
+
 function Header(props) {
+  const suggestionsRef = useRef(null); //references the element
+  const inputRef = useRef(null);
+  const [suggestionVisible, setSuggestionVisible] = useState(true);
+  useEffect(() => {
+    console.log("useEffect!");
+
+    document.addEventListener("click", (event) => {
+      return handleClickGlobal(event, setSuggestionVisible, suggestionsRef, inputRef);
+    });
+    //[] mneans it will only run once, after render. we can add a listener then
+  }, []);
   console.log("Header refreshing");
 
   const [showItems, setShowItems] = useState([]);
@@ -49,7 +83,7 @@ function Header(props) {
           </div>
           <img src={imdbLogo} width={64} height={32} className="mr-3" />
         </div>
-        <div className="searchContainer parent">
+        <div className="searchContainer parent" ref={inputRef}>
           <div className="searchContainer" id="searchBox">
             <div className="border-r-1 ml-2 flex">
               <span className="font-bold">All</span>
@@ -64,9 +98,10 @@ function Header(props) {
 
             <img src={searchIcon} className="ml-auto" />
 
-            <div className="searchSuggestions">
+            <div className="searchSuggestions" ref={suggestionsRef}>
               <div className="searchSuggestions">
                 {showItems &&
+                  suggestionVisible &&
                   showItems.map((item, index) => (
                     <SuggestionCard
                       key={index}

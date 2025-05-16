@@ -4,6 +4,9 @@ function SuggestionCard(props){
     console.log("suggestioncard: "+props);
     console.log(typeof props);
     console.log(props.title);
+    if(!props.poster){
+        props.poster
+    }
     return(
         <>
         
