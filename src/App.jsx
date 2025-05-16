@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import HomePage from "./pages/HomePage";
+import MoviePage from "./pages/MoviePage";
 
 function App() {
   const [counter, setCounter] = useState(0);
@@ -31,6 +32,13 @@ function App() {
             </div>
           }
         />
+         <Route
+          path="/title/:id"
+          element={
+            <MoviePage/>
+          }
+        />
+        <Route path="*" element={<div>Default route!</div>}/>
       </Routes>
     </BrowserRouter>
   );
