@@ -60,7 +60,10 @@ document.addEventListener("click", clickHandler);
             />
             <span className="menuText mr-2">Menu</span>
           </div>
-          <img src={imdbLogo} width={64} height={32} className="mr-3" />
+            <a href={document.location.protocol + "//" +document.location.host + "/"}>
+                        <img src={imdbLogo} width={64} height={32} className="mr-3" />
+
+            </a>
         </div>
         <div className="searchContainer parent" ref={inputRef}>
           <div className="searchContainer" id="searchBox">
