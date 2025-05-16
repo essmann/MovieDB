@@ -47,22 +47,24 @@ function MoviePage() {
               </div>
               <div id="movie_page_rating_container">
                 <div id="movie_page_rating_headers">
-                  <div>IMDB rating</div>
-                  <div>Your rating</div>
-                  <div>Popularity</div>
-                </div>
-                <div id="movie_page_rating">
-                  <div className="">
-                    
-                    <div className="flex">
-                      <img src={starIcon}></img>
+                  <div>
+                    <div>IMDB rating</div>
+                   <div className="flex">
+                      <img src={starIcon} height={24} width={24}></img>
                       {movie.imdbRating}
                       </div>
+                  </div>
+                  <div>
+                    <div>Your rating</div>
+                    <div>star</div>
+                  </div>
+                  <div>
+                    <div>Votes</div>
                     <span className="text-xs">{movie.imdbVotes}</span>
                   </div>
-                  <div>Rate</div>
-                  <div>1186</div>
                 </div>
+                
+                
                 <div id="genres">
             {genreArray.map((genre, key) => {
               return <a  id="genreItem"key={key} href=""> {genre} </a>;
