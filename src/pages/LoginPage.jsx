@@ -1,10 +1,12 @@
 import "../css/LoginPage.css";
 import { GoogleLogin } from "@react-oauth/google";
 import { useNavigate } from "react-router";
+import Header from "../components/Header";
 function LoginPage() {
     const navigate = useNavigate();
   return (
     <>
+    <Header/>
       <div id="loginPageContainer">
         <div id="loginPageContainerloginContainer" className="">
           <h2 className="">Sign in to MovieDB</h2>
