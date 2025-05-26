@@ -115,9 +115,9 @@ document.addEventListener("click", clickHandler);
               </div>
             ) : (
               <div id="userNav" className="flex">
-                <span id="username" className="mb-1 ml-2">
+                <Link id="username" className="mb-1 ml-2" to={'/login'}>
                   Sign in
-                </span>
+                </Link>
                 <img src={arrowDown} alt="" width={24} height={24} />
               </div>
             )}

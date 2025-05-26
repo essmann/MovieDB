@@ -1,5 +1,5 @@
 import Header from "../components/Header";
-import { GoogleLogin } from "@react-oauth/google";
+
 function handleClick(props) {
     props.setCounter(prev => prev + 1);
 }
@@ -25,7 +25,7 @@ function HomePage(props) {
             >
                 Signed in: {props.isLoggedIn? "Yes" : "No"}
             </button>
-            <GoogleLogin/>
+            
         </>
     );
 }
