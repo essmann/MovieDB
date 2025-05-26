@@ -1,0 +1,39 @@
+:root{
+    --darkest-color: #000000;
+    --imdb-gray: #121212;
+    --imdb-white: #FFFFFF;
+    --imdb-suggestion-hover: #313131;
+}
+
+
+
+#loginPageContainer{
+    
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    color: var(--imdb-white);
+    
+
+}
+
+#loginContainer{
+    border-radius: 12px;
+    background: var(--imdb-gray);
+    width: 500px;
+    height: 500px;
+    margin-top: 7rem;
+    text-align: center;
+    font-size:xx-large;
+    font-family: "Roboto";
+    justify-content: center;
+    align-items: center;
+
+    
+
+}
+#googleLoginContainer{
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+}

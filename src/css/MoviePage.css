@@ -131,6 +131,11 @@
     font-weight: bold;
     color: var(--imdb-white);
 }
+#summary{
+    text-wrap: wrap;
+    min-width: 1000px;
+    max-width: 1000px;
+}
 
 #nominations{
     

@@ -2,11 +2,13 @@ import { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import MoviePage from "./pages/MoviePage";
-
+import { GoogleLogin } from "@react-oauth/google";
+import LoginPage from "./pages/LoginPage";
 function App() {
   const [counter, setCounter] = useState(0);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   console.log("Parent App is being re-rendered. The state is updated.");
+
 
   return (
     <BrowserRouter>
@@ -36,6 +38,12 @@ function App() {
           path="/title/:id"
           element={
             <MoviePage/>
+          }
+        />
+        <Route
+          path="/login"
+          element={
+            <LoginPage/>
           }
         />
         <Route path="*" element={<div>Default route!</div>}/>
