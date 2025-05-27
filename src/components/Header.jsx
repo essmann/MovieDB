@@ -8,44 +8,48 @@ import listIcon from "../assets/list_icon_white.svg";
 import "../css/Header.css";
 import SuggestionCard from "./SuggestionCard";
 import debounce from "../utility/debounce";
-
+import { useContext } from "react";
 import { useRef } from "react";
 import handleClickHome from "../event_handlers/handleClickHome";
 import handleSearchInput from "../event_handlers/handleSearchInput";
 import { Link } from "react-router";
-function Header(props) {
+import { AuthContext } from "../context/AuthContext";
+function Header() {
   const suggestionsRef = useRef(null); //references the element
   const inputRef = useRef(null);
   const [suggestionVisible, setSuggestionVisible] = useState(true);
 
-
-const clickHandler = (event) => {
-  return handleClickHome(event, setSuggestionVisible, suggestionsRef, inputRef);
-};
+  const clickHandler = (event) => {
+    return handleClickHome(
+      event,
+      setSuggestionVisible,
+      suggestionsRef,
+      inputRef
+    );
+  };
 
   useEffect(() => {
     console.log("useEffect! I fire once");
-    
-// Define the handler function once
 
+    // Define the handler function once
 
+    // Remove the listener
+    //document.removeEventListener("click", clickHandler);
 
-// Remove the listener
-//document.removeEventListener("click", clickHandler);
-
-// Add the listener
-document.addEventListener("click", clickHandler);
-  return () => {
-    document.removeEventListener("click", clickHandler);
-  }
+    // Add the listener
+    document.addEventListener("click", clickHandler);
+    return () => {
+      document.removeEventListener("click", clickHandler);
+    };
     //[] mneans it will only run once, after render. we can add a listener then
   }, []);
   console.log("Header refreshing");
 
-  const [showItems, setShowItems] = useState([]);
+  const { isLoggedIn, user } = useContext(AuthContext);
+  console.log("Context state from within Header :" + isLoggedIn + "  " + user);
 
-  const username = "essmann";
-  const loggedIn = props.loggedIn;
+  const [showItems, setShowItems] = useState([]);
+  const loggedIn = isLoggedIn;
 
   return (
     <div id="header">
@@ -60,10 +64,9 @@ document.addEventListener("click", clickHandler);
             />
             <span className="menuText mr-2">Menu</span>
           </div>
-            <Link to={`/`}>
-                        <img src={imdbLogo} width={64} height={32} className="mr-3" />
-
-            </Link>
+          <Link to={`/`}>
+            <img src={imdbLogo} width={64} height={32} className="mr-3" />
+          </Link>
         </div>
         <div className="searchContainer parent" ref={inputRef}>
           <div className="searchContainer" id="searchBox">
@@ -100,25 +103,30 @@ document.addEventListener("click", clickHandler);
         </div>
         <div id="loginContainer" className="ml-4 bl-1 flex items-center">
           <div id="userContainer" className="flex">
-            <div id="watchlist" className="flex">
-              <img src={listIcon} />
-              <span className="ml-1 mr-3 text-white">Watchlist</span>
-              <span className="border-r-2 mr-3"></span>
-            </div>
             {loggedIn ? (
-              <div id="userNav" className="flex">
+              <Link id="watchlist" className="flex" to="/watchlist">
+                <img src={listIcon} />
+                <span className="ml-1 mr-3 text-white">Watchlist</span>
+                <span className=""></span>
+              </Link>
+            ) : (
+              <></>
+            )}
+
+            {loggedIn ? (
+              <Link id="userNav" className="flex" to="/test">
                 <img src={userIcon} alt="" width={24} height={24} />
-                <span id="username" className="mb-1 ml-2">
-                  {username}
+                <span id="username" className=" ml-2">
+                  {user?.name || "User"}
                 </span>
                 <img src={arrowDown} alt="" width={24} height={24} />
-              </div>
+              </Link>
             ) : (
               <div id="userNav" className="flex">
-                <Link id="username" className="mb-1 ml-2" to={'/login'}>
+                <Link id="username" className="mb-1 ml-2" to={"/login"}>
                   Sign in
                 </Link>
-                <img src={arrowDown} alt="" width={24} height={24} />
+                
               </div>
             )}
           </div>

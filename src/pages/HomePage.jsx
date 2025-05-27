@@ -8,8 +8,6 @@ function HomePage(props) {
     return (
         <>
             <Header
-                isLoggedIn={props.isLoggedIn}
-                setIsLoggedIn={props.setIsLoggedIn}
             />
             <button
                 id="count"

@@ -108,6 +108,18 @@ body{
 #logo-container{
     flex-direction: row-reverse;
 }
+#userContainer{
+height: 24px;
+}
+#userContainer * {
+  
+  border-radius: 10px;
+  
+  
+}
+#watchlist:hover, #userNav:hover{
+  background: var(--imdb-suggestion-hover);
+}
 @media only screen and (max-width: 1000px) {
   .menuText{
     display: none;
