@@ -17,6 +17,7 @@ import { AuthContext } from "../context/AuthContext";
 function Header() {
   const suggestionsRef = useRef(null); //references the element
   const inputRef = useRef(null);
+
   const [suggestionVisible, setSuggestionVisible] = useState(true);
 
   const clickHandler = (event) => {
@@ -46,7 +47,9 @@ function Header() {
   console.log("Header refreshing");
 
   const { isLoggedIn, user } = useContext(AuthContext);
-  console.log("Context state from within Header :" + isLoggedIn + "  " + user);
+  console.log(
+    `Context state from within Header : ${isLoggedIn}, ${JSON.stringify(user)}`
+  );
 
   const [showItems, setShowItems] = useState([]);
   const loggedIn = isLoggedIn;
@@ -114,19 +117,38 @@ function Header() {
             )}
 
             {loggedIn ? (
-              <Link id="userNav" className="flex" to="/test">
-                <img src={userIcon} alt="" width={24} height={24} />
-                <span id="username" className=" ml-2">
-                  {user?.name || "User"}
-                </span>
-                <img src={arrowDown} alt="" width={24} height={24} />
-              </Link>
+              <>
+                <div id="userNav" className="flex" onClick={() => {
+                   let popup = document.querySelector("#userPopup");
+                   var isVisible = popup.style.visibility == "visible" ? true: false; 
+                    return isVisible ? popup.style.visibility = "hidden": popup.style.visibility = "visible";
+                  }}>
+                  <img src={userIcon} alt="" width={24} height={24} />
+                  <span id="username" className=" ml-2">
+                    {user?.name || "User"}
+                  </span>
+                  <img src={arrowDown} alt="" width={24} height={24} />
+                </div>
+
+                <div
+                  id="userPopup"
+                  
+                >
+                  <ul className="">
+                    <Link to="/">Your Profile</Link>
+                    <Link>Your Watchlist</Link>
+                    <Link>Your Ratings</Link>
+                    <Link>Your Lists</Link>
+                    <Link>Account Settings</Link>
+                    <Link>Sign Out</Link>
+                  </ul>
+                </div>
+              </>
             ) : (
               <div id="userNav" className="flex">
                 <Link id="username" className="mb-1 ml-2" to={"/login"}>
                   Sign in
                 </Link>
-                
               </div>
             )}
           </div>

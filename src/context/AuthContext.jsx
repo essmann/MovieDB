@@ -8,6 +8,7 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState({});
 
   useEffect(() => {
+      console.log("AuthProvider user changed:", user);
     const accessToken = localStorage.getItem("accessToken");
     const userInfo = JSON.parse(localStorage.getItem("userInfo"));
     console.log("AuthProvider useEffect running!");

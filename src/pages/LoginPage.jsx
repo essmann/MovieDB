@@ -4,8 +4,9 @@ import { useNavigate } from "react-router";
 import Header from "../components/Header";
 import { useGoogleLogin } from "@react-oauth/google";
 import getUserInfo from "../api/google/getUserInfo";
-
+import { AuthContext } from "../context/AuthContext";
 import GoogleButton from "react-google-button";
+import { useContext } from "react";
 function LoginPage() {
   const EXPIRES_IN = 3600 * 1000;
   const navigate = useNavigate();
@@ -15,7 +16,8 @@ function LoginPage() {
     },
     flow: "auth-code",
   }); */
-
+     const {user, setUser, setIsLoggedIn } = useContext(AuthContext);
+     console.log(setUser);
   const loginImplicit = useGoogleLogin({
     onSuccess: async (tokenResponse) => {
       console.log(tokenResponse);
@@ -27,6 +29,10 @@ function LoginPage() {
       localStorage.setItem("accessToken", accessToken);
       localStorage.setItem("accessTokenExpiresAt", expiresAt.toString());
       localStorage.setItem('userInfo', JSON.stringify(userInfo));
+      console.log(userInfo);
+      setUser(userInfo);
+      setIsLoggedIn(true);
+      console.log(`THIS IS USER ${JSON.stringify(user, null, 2)}`);
       console.log("Logged in.");
       navigate("/");
     },

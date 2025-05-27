@@ -119,6 +119,7 @@ height: 24px;
 }
 #watchlist:hover, #userNav:hover{
   background: var(--imdb-suggestion-hover);
+  cursor: pointer;
 }
 @media only screen and (max-width: 1000px) {
   .menuText{
@@ -151,5 +152,40 @@ height: 24px;
   #username{
     display: none;
   }
+}
+
+#userPopup {
+  position: absolute;
+  visibility: hidden;
+  height: auto;
+  width: 225px;
+  border-radius: 0px;
+  top: 12%;
+  margin-right: 10px;
+  display: flex;
+   color: var(--imdb-white);
+  background: var(--imdb-gray);
+ 
+  padding: 0.2rem;
+}
+#userPopup > ul {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content: center;
+  
+}
+#userPopup > ul *{
+  
+  text-align: left;
+  
+  margin-left: 1.5rem;
+  margin-top: 0.65rem;
+  padding: 0.2rem;
+  width: auto;
+}
+#userPopup > ul *:hover{
+ background: var(--imdb-suggestion-hover);
 }
 /*  */
