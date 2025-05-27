@@ -14,6 +14,7 @@ import handleClickHome from "../event_handlers/handleClickHome";
 import handleSearchInput from "../event_handlers/handleSearchInput";
 import { Link } from "react-router";
 import { AuthContext } from "../context/AuthContext";
+
 function Header() {
   const suggestionsRef = useRef(null); //references the element
   const inputRef = useRef(null);
@@ -28,9 +29,21 @@ function Header() {
       inputRef
     );
   };
+const {user, isLoggedIn, setUser, setIsLoggedIn } = useContext(AuthContext);
+
+function Logout(){
+    //clear local storage and update context.
+        localStorage.removeItem("accessToken");
+        localStorage.removeItem("accessTokenExpiresAt");
+        localStorage.removeItem("userInfo");
+
+        setUser({});
+        setIsLoggedIn(false);
+    
+}
 
   useEffect(() => {
-    console.log("useEffect! I fire once");
+    console.log("useEffect! I fire once inside header");
 
     // Define the handler function once
 
@@ -46,10 +59,6 @@ function Header() {
   }, []);
   console.log("Header refreshing");
 
-  const { isLoggedIn, user } = useContext(AuthContext);
-  console.log(
-    `Context state from within Header : ${isLoggedIn}, ${JSON.stringify(user)}`
-  );
 
   const [showItems, setShowItems] = useState([]);
   const loggedIn = isLoggedIn;
@@ -140,7 +149,9 @@ function Header() {
                     <Link>Your Ratings</Link>
                     <Link>Your Lists</Link>
                     <Link>Account Settings</Link>
-                    <Link>Sign Out</Link>
+                    <Link onClick={
+                      Logout
+                    }>Sign Out</Link>
                   </ul>
                 </div>
               </>
