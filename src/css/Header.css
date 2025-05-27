@@ -160,7 +160,7 @@ height: 24px;
   height: auto;
   width: 225px;
   border-radius: 0px;
-  top: 12%;
+  margin-top: 3rem;
   margin-right: 10px;
   display: flex;
    color: var(--imdb-white);
