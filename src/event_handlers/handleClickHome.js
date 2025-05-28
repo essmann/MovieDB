@@ -4,19 +4,19 @@ function handleClickHome(
   event,
   setSuggestionVisible,
   suggestionsRef,
-  inputRef,
-  userPopupVisible,
-  setUserPopupVisible,
-  popupRef
+  inputRef
+  
+
 ) {
-  if(userPopupVisible && !popupRef?.current?.contains(event.target)){
-    setUserPopupVisible(false);
-    console.log("Hiding popup");
-  }
+ 
+const suggestionIsVisible = suggestionsRef.current?.children[0].children?.length > 0;  console.log(suggestionIsVisible);
+console.log(suggestionsRef.current.children)
+ 
   if (
     suggestionsRef.current &&
     !suggestionsRef.current.contains(event.target) &&
     !inputRef.current.contains(event.target)
+    && suggestionIsVisible
   ) {
     setSuggestionVisible(false);
     console.log(
@@ -24,7 +24,8 @@ function handleClickHome(
     );
   } else if (
     suggestionsRef.current.contains(event.target) ||
-    inputRef.current.contains(event.target)
+    inputRef.current.contains(event.target)&&
+    !suggestionIsVisible
   ) {
     setSuggestionVisible(true);
 

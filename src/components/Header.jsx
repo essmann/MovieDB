@@ -27,6 +27,7 @@ function Header() {
       setSuggestionVisible,
       suggestionsRef,
       inputRef
+     
     );
   };
 const {user, isLoggedIn, setUser, setIsLoggedIn } = useContext(AuthContext);
