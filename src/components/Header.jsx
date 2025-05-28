@@ -146,9 +146,9 @@ function Logout(){
                 >
                   <ul className="">
                     <Link to="/">Your Profile</Link>
-                    <Link>Your Watchlist</Link>
-                    <Link>Your Ratings</Link>
-                    <Link>Your Lists</Link>
+                    <Link to={`/user/${user?.sub}/watchlist`}>Your Watchlist</Link>
+                    <Link to={`/user/${user?.sub}/ratings`}>Your Ratings</Link>
+                    <Link to={`/user/${user?.sub}/lists`}>Your Lists</Link>
                     <Link>Account Settings</Link>
                     <Link onClick={
                       Logout

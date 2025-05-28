@@ -5,6 +5,7 @@ import MoviePage from "./pages/MoviePage";
 import { GoogleLogin } from "@react-oauth/google";
 import LoginPage from "./pages/LoginPage";
 import { AuthProvider } from "./context/AuthContext.jsx";
+import RatingsPage from "./pages/RatingsPage.jsx";
 function App() {
   const [counter, setCounter] = useState(0);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -36,6 +37,8 @@ function App() {
               </div>
             }
           />
+          <Route path = "/user/:userId/watchlist" />
+          <Route path = "/user/:userId/ratings"  element={<RatingsPage/>}/>
           <Route path="/title/:id" element={<MoviePage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="*" element={<div>Default route!</div>} />
