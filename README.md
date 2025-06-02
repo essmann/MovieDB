@@ -10,7 +10,7 @@
 ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
 
 ## Backend stack
-[![My Skills](https://skillicons.dev/icons?i=js,html,css,wasm)](https://skillicons.dev)
+[![My Skills](https://skillicons.dev/icons?i=c#,.net,css,wasm)](https://skillicons.dev)
 <!-- Proudly created with GPRM ( https://gprm.itsvg.in ) -->
 
 </div>
