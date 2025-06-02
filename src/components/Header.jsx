@@ -92,15 +92,16 @@ console.log("Logged in from hedaera:" + isLoggedIn);
               <div className="searchSuggestions">
                 {showItems &&
                   suggestionVisible &&
-                  showItems.map((item, index) => (
+                  showItems?.map((item, index) => (
                     <SuggestionCard
-                      key={index}
-                      title={item.Title}
-                      year={item.Year}
-                      poster={item.Poster}
-                      type={item.Type}
-                      imdbId={item.imdbID}
-                    />
+                        key={index}
+                        title={item.title}       // lowercase keys here
+                        year={item.year}
+                        poster={item.poster}
+                        type={item.type}
+                        imdbId={item.imdbID}     // this key looks correctly cased
+                      />
+
                   ))}
               </div>
             </div>

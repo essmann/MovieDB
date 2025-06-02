@@ -2,13 +2,12 @@ import "../css/MoviePage.css";
 import "../css/Header.css";
 import { useParams } from "react-router";
 import Header from "../components/Header";
-import getMovieById from "../api/getMovieById";
 import { useEffect } from "react";
 import { useState } from "react";
 import starIcon from "../assets/imdb_star_yellow.svg";
 import emptyStarIcon from "../assets/empy_blue_star.svg";
 import RatingPopup from "../components/RatingPopup";
-import { useRef } from "react";
+import GetMovieById from "../api/aspnet/GetMovieById";
 function MoviePage() {
   let params = useParams(); //gets the search parameters
 
@@ -18,7 +17,7 @@ function MoviePage() {
   useEffect(() => {
     console.log("UseEffect from moviepage");
     async function fetchMovie() {
-      let movie = await getMovieById(params.id);
+      let movie = await GetMovieById(params.id);
       console.log("Fetched movie from getMovieById");
       setMovie(movie);
       setRating(movie?.MyRating || null);
