@@ -1,8 +1,8 @@
 import Header from "../components/Header";
-import getProfile from "../api/aspnet/GetProfile";
+import GetProfile from "../api/aspnet/GetProfile.js";
 async function handleClick(props) {
     props.setCounter(prev => prev + 1);
-   await getProfile();
+   await GetProfile();
 }
 
 function HomePage(props) {
