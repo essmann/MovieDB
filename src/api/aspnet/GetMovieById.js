@@ -1,5 +1,7 @@
 async function GetMovieById(id) {
-  const response = await fetch(`https://localhost:7233/movies/${id}`, {
+    const apiBaseUrl = import.meta.env.VITE_API_URL;
+    console.log("apibaseurl" + apiBaseUrl);
+  const response = await fetch(`${apiBaseUrl}/movies/${id}`, {
    
      credentials: "include" // ✅ Important: allow browser to store the cookie
    
