@@ -1,5 +1,5 @@
 async function getProfile() {
-  const response = await fetch("https://localhost:7125/profile", {
+  const response = await fetch("https://localhost:7233/profile", {
     credentials: "include", // <-- important: send cookies!
   });
 

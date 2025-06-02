@@ -14,7 +14,7 @@ import handleClickHome from "../event_handlers/handleClickHome";
 import handleSearchInput from "../event_handlers/handleSearchInput";
 import { Link } from "react-router";
 import { AuthContext } from "../context/AuthContext";
-
+import Logout from "../api/aspnet/Logout";
 function Header() {
   const suggestionsRef = useRef(null); //references the element
   const inputRef = useRef(null);
@@ -31,21 +31,13 @@ function Header() {
     );
   };
 const {user, isLoggedIn, setUser, setIsLoggedIn } = useContext(AuthContext);
+console.log("User from hedaer:" + user?.name);
+console.log("Logged in from hedaera:" + isLoggedIn);
 
-function Logout(){
-    //clear local storage and update context.
-        localStorage.removeItem("accessToken");
-        localStorage.removeItem("accessTokenExpiresAt");
-        localStorage.removeItem("userInfo");
-
-        setUser({});
-        setIsLoggedIn(false);
-    
-}
 
   useEffect(() => {
     console.log("useEffect! I fire once inside header");
-
+    console.log("Header: user.name: " + user?.name);
     // Define the handler function once
 
     // Remove the listener
@@ -62,7 +54,7 @@ function Logout(){
 
 
   const [showItems, setShowItems] = useState([]);
-  const loggedIn = isLoggedIn;
+  
 
   return (
     <div id="header">
@@ -116,7 +108,7 @@ function Logout(){
         </div>
         <div id="loginContainer" className="ml-4 bl-1 flex items-center">
           <div id="userContainer" className="flex">
-            {loggedIn ? (
+            {isLoggedIn ? (
               <Link id="watchlist" className="flex" to="/watchlist">
                 <img src={listIcon} />
                 <span className="ml-1 mr-3 text-white">Watchlist</span>
@@ -126,7 +118,7 @@ function Logout(){
               <></>
             )}
 
-            {loggedIn ? (
+            {isLoggedIn ? (
               <>
                 <div id="userNav" className="flex" onClick={() => {
                    let popup = document.querySelector("#userPopup");
@@ -151,7 +143,12 @@ function Logout(){
                     <Link to={`/user/${user?.sub}/lists`}>Your Lists</Link>
                     <Link>Account Settings</Link>
                     <Link onClick={
-                      Logout
+                      ()=>{
+                        Logout();
+                        setIsLoggedIn(false);
+                        setUser({});
+                      }
+
                     }>Sign Out</Link>
                   </ul>
                 </div>

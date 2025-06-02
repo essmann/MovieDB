@@ -13,7 +13,7 @@ function MoviePage() {
   let params = useParams(); //gets the search parameters
 
   const [movie, setMovie] = useState(null);
-  const [rating, setRating] = useState(null);
+  const [rating, setRating] = useState(movie?.MyRating || null);
 
   useEffect(() => {
     console.log("UseEffect from moviepage");
