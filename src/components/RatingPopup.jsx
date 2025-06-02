@@ -29,15 +29,19 @@ function RatingPopup({ props }) {
         
         
     }
-   function fillStars(index) {
+   function fillStars(index, clear) {
        const stars = starContainer.current.children;
+       
        
        console.log(stars);
        console.log("stars bro");
 
     // Convert to an array to use forEach
     Array.from(stars).forEach((element, i) => {
-        if(i+1<=index){
+        if(clear){
+            element.src = star_no_fill;
+        }
+        else if(i+1<=index){
             element.src = star_fill;
         }
         else{
@@ -54,7 +58,7 @@ function RatingPopup({ props }) {
                 ref={starContainer}
                 onMouseLeave={() =>{
                         console.log('Hovered outside of the stars container!')
-                        
+                        fillStars(0, true);
                 }
                     
                     
