@@ -7,12 +7,14 @@ import { useEffect } from "react";
 import { useState } from "react";
 import starIcon from "../assets/imdb_star_yellow.svg"
 import emptyStarIcon from "../assets/empy_blue_star.svg"
-
+import RatingPopup from "../components/RatingPopup";
+import { useRef } from "react";
+import handleClickRatingPopup from "../event_handlers/handleClickRatingPopup";
 function MoviePage() {
   let params = useParams(); //gets the search parameters
 
   const [movie, setMovie] = useState(null);
-
+  const ratingPopup = useRef(null);
   useEffect(() => {
     console.log("UseEffect from moviepage");
     async function fetchMovie() {
@@ -20,10 +22,22 @@ function MoviePage() {
       console.log("Fetched movie from getMovieById");
       setMovie(movie);
       // Do something with movie here
+
+       if (ratingPopup.current && !ratingPopup.current.hasClickListener) {
+        ratingPopup.current.addEventListener('click', (event)=>{
+          handleClickRatingPopup(event, ratingPopup);
+        });
+        console.log("palala");
+        const stars = ratingPopup.current.querySelectorAll("img");
+        console.log(stars);
+        ratingPopup.current.hasClickListener = true;
+    }
     }
     fetchMovie();
   }, [params.id]);
   if (!movie) return <div>Loading...</div>;
+
+          
 
   let genreArray = movie.Genre.split(",");
   let actors = movie.Actors.split(",");
@@ -36,6 +50,7 @@ function MoviePage() {
     <>
     {    console.log("movie Page rendering!")}
       <Header />
+      <RatingPopup ref={ratingPopup}/>
       <div id="parentContainer">
         <div id="moviePageMovieContainer">
           <div id="movieContainer">

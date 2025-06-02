@@ -2,11 +2,13 @@ import "../css/LoginPage.css";
 
 import { useNavigate } from "react-router";
 import Header from "../components/Header";
-import { useGoogleLogin } from "@react-oauth/google";
-import getUserInfo from "../api/google/getUserInfo";
+
+import { GoogleLogin } from "@react-oauth/google";
+
 import { AuthContext } from "../context/AuthContext";
 import GoogleButton from "react-google-button";
-import { useContext } from "react";
+import { jwtDecode } from "jwt-decode";
+import Login from "../api/aspnet/Login";
 function LoginPage() {
   const EXPIRES_IN = 3600 * 1000;
   const navigate = useNavigate();
@@ -15,8 +17,22 @@ function LoginPage() {
       console.log(`codeResponse: ${codeResponse}`);
     },
     flow: "auth-code",
+    
   }); */
-     const {user, setUser, setIsLoggedIn } = useContext(AuthContext);
+
+  const handleLoginSuccess = async (credentialResponse) => {
+    const jwt = credentialResponse.credential;  // This is the Google JWT (ID token)
+    console.log("Google JWT:", jwt);
+const user = jwtDecode(jwt);
+console.log(user);
+    // You can send this JWT to your backend or decode it here
+
+    await Login(jwt);
+    
+  };
+
+
+ /*  const {user, setUser, setIsLoggedIn } = useContext(AuthContext);
      console.log(setUser);
   const loginImplicit = useGoogleLogin({
     onSuccess: async (tokenResponse) => {
@@ -36,7 +52,7 @@ function LoginPage() {
       console.log("Logged in.");
       navigate("/");
     },
-  });
+  }); */
 
   return (
     <>
@@ -45,7 +61,12 @@ function LoginPage() {
         <div id="loginPageContainerloginContainer" className="">
           <h2 className="">Sign in to MovieDB</h2>
           <div id="googleLoginContainer">
-            <GoogleButton onClick={() => loginImplicit()}></GoogleButton>
+            <GoogleLogin
+        onSuccess={handleLoginSuccess}
+        onError={() => {
+          console.log('Login Failed');
+        }}
+      />
           </div>
         </div>
       </div>

@@ -1,7 +1,8 @@
 import Header from "../components/Header";
-
-function handleClick(props) {
+import getProfile from "../api/aspnet/getProfile";
+async function handleClick(props) {
     props.setCounter(prev => prev + 1);
+   await getProfile();
 }
 
 function HomePage(props) {
@@ -12,7 +13,7 @@ function HomePage(props) {
             <button
                 id="count"
                 className="bg-amber-300"
-                onClick={() => handleClick(props)}
+                onClick={() => handleClick(props) }
             >
                 Test: {props.counter}
             </button>
