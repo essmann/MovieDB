@@ -10,10 +10,24 @@
 ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
 
 ## Backend stack
-<div style="display: flex; align-items: flex-start;"><img src="https://techstack-generator.vercel.app/csharp-icon.svg" alt="icon" width="65" height="65" /></div>
-<!-- Proudly created with GPRM ( https://gprm.itsvg.in ) -->
 
+<div align="center">
+  <img src="https://img.shields.io/badge/ASP.NET%20Core-512BD4?style=for-the-badge&logo=dotnet&logoColor=white" />
+  <img src="https://img.shields.io/badge/C%23-239120?style=for-the-badge&logo=c-sharp&logoColor=white" />
+  <img src="https://img.shields.io/badge/Microsoft%20SQL%20Server-CC2927?style=for-the-badge&logo=microsoftsqlserver&logoColor=white" />
 </div>
+
+---
+
+## 📦 Tech Stack
+
+| Tech               | Description                                  |
+|--------------------|----------------------------------------------|
+| ![ASP.NET](https://img.shields.io/badge/ASP.NET-512BD4?logo=dotnet&logoColor=white&style=flat) | Backend framework for building web APIs |
+| ![C#](https://img.shields.io/badge/C%23-239120?logo=c-sharp&logoColor=white&style=flat)        | Programming language used for API logic |
+| ![SQL Server](https://img.shields.io/badge/SQL%20Server-CC2927?logo=microsoftsqlserver&logoColor=white&style=flat) | Relational database storing movie data |
+
+---
 <div>
   
 ## Preview - IMDB template 
