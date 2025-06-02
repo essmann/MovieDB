@@ -1,4 +1,4 @@
-async function getProfile() {
+async function GetProfile() {
   const response = await fetch("https://localhost:7233/profile", {
     credentials: "include", // <-- important: send cookies!
   });
@@ -12,4 +12,4 @@ async function getProfile() {
   return data;
 }
 
-export default getProfile;
+export default GetProfile;
