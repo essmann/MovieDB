@@ -5,16 +5,16 @@ import Header from "../components/Header";
 import getMovieById from "../api/getMovieById";
 import { useEffect } from "react";
 import { useState } from "react";
-import starIcon from "../assets/imdb_star_yellow.svg"
-import emptyStarIcon from "../assets/empy_blue_star.svg"
+import starIcon from "../assets/imdb_star_yellow.svg";
+import emptyStarIcon from "../assets/empy_blue_star.svg";
 import RatingPopup from "../components/RatingPopup";
 import { useRef } from "react";
-import handleClickRatingPopup from "../event_handlers/handleClickRatingPopup";
 function MoviePage() {
   let params = useParams(); //gets the search parameters
 
   const [movie, setMovie] = useState(null);
-  const ratingPopup = useRef(null);
+  const [rating, setRating] = useState(null);
+
   useEffect(() => {
     console.log("UseEffect from moviepage");
     async function fetchMovie() {
@@ -23,34 +23,23 @@ function MoviePage() {
       setMovie(movie);
       // Do something with movie here
 
-       if (ratingPopup.current && !ratingPopup.current.hasClickListener) {
-        ratingPopup.current.addEventListener('click', (event)=>{
-          handleClickRatingPopup(event, ratingPopup);
-        });
-        console.log("palala");
-        const stars = ratingPopup.current.querySelectorAll("img");
-        console.log(stars);
-        ratingPopup.current.hasClickListener = true;
-    }
+      
     }
     fetchMovie();
   }, [params.id]);
   if (!movie) return <div>Loading...</div>;
 
-          
-
   let genreArray = movie.Genre.split(",");
   let actors = movie.Actors.split(",");
   let writers = movie.Writer.split(",");
   let directors = movie.Director.split(",");
-  movie.imdbVotes = `${Math.floor(parseInt(movie.imdbVotes))}K`
+  movie.imdbVotes = `${Math.floor(parseInt(movie.imdbVotes))}K`;
 
   return (
-
     <>
-    {    console.log("movie Page rendering!")}
+      {console.log("movie Page rendering!")}
       <Header />
-      <RatingPopup ref={ratingPopup}/>
+      <RatingPopup rating={rating} />
       <div id="parentContainer">
         <div id="moviePageMovieContainer">
           <div id="movieContainer">
@@ -74,15 +63,26 @@ function MoviePage() {
                 <div id="movie_page_rating_headers">
                   <div>
                     <div>IMDB rating</div>
-                   <div className="flex">
+                    <div className="flex">
                       <img src={starIcon} height={24} width={24}></img>
                       {movie.imdbRating}
-                      </div>
+                    </div>
                   </div>
                   <div>
                     <div>Your rating</div>
-                    <div className="flex">
-                      <img src={emptyStarIcon} className="mb-2" width={24} height={24}/>
+                    <div className="flex" id="moviePageRateBtnContainer" onClick={
+                      ()=>{
+                        var ratingPopupElement =  document.querySelector("#ratingPopupContainer");
+                        var visibility = ratingPopupElement.style.visibility;
+                        visibility == "hidden" ? ratingPopupElement.style.visibility = "visible" : ratingPopupElement.style.visibility = "hidden";
+                      }
+                    }>
+                      <img
+                        src={emptyStarIcon}
+                        className="mb-2"
+                        width={24}
+                        height={24}
+                      />
                       <span>Rate</span>
                     </div>
                   </div>
@@ -91,52 +91,62 @@ function MoviePage() {
                     <span className="text-xs ml-1 ">{movie.imdbVotes}</span>
                   </div>
                 </div>
-                
-                
+
                 <div id="genres">
-            {genreArray.map((genre, key) => {
-              return <a  id="genreItem"key={key} href=""> {genre} </a>;
-            })}
-          </div>
-          <div id="summary">{movie.Plot}</div>
-          <div id="director" className="flex ">
-            <label>Director: </label>
-            {directors.map((director, key) => {
-              return <a  id="directorItem"key={key} href=""> {director} </a>;
-            })}
-          </div>
-          <div id="writers" className="flex ">
-            <label>Writers: </label>
-            {writers.map((writer, key) => {
-              return key + 1 < writers.length
-                ? <a id="actorItem" key={key} href="">{writer},</a>
-                : <a key={key}>{writer}</a>;
-                            
-            })}
-          </div>
-          <div id="actors" className="flex ">
-            <label>Actors: </label>
-            {actors.map((actor, key) => {
-              return key + 1 < actors.length
-                ? <a id="actorItem" key={key} href="">{actor},</a>
-                : <a key={key}>{actor}</a>;
-                            
-            })}
-          </div>
-        
+                  {genreArray.map((genre, key) => {
+                    return (
+                      <a id="genreItem" key={key} href="">
+                        {" "}
+                        {genre}{" "}
+                      </a>
+                    );
+                  })}
+                </div>
+                <div id="summary">{movie.Plot}</div>
+                <div id="director" className="flex ">
+                  <label>Director: </label>
+                  {directors.map((director, key) => {
+                    return (
+                      <a id="directorItem" key={key} href="">
+                        {" "}
+                        {director}{" "}
+                      </a>
+                    );
+                  })}
+                </div>
+                <div id="writers" className="flex ">
+                  <label>Writers: </label>
+                  {writers.map((writer, key) => {
+                    return key + 1 < writers.length ? (
+                      <a id="actorItem" key={key} href="">
+                        {writer},
+                      </a>
+                    ) : (
+                      <a key={key}>{writer}</a>
+                    );
+                  })}
+                </div>
+                <div id="actors" className="flex ">
+                  <label>Actors: </label>
+                  {actors.map((actor, key) => {
+                    return key + 1 < actors.length ? (
+                      <a id="actorItem" key={key} href="">
+                        {actor},
+                      </a>
+                    ) : (
+                      <a key={key}>{actor}</a>
+                    );
+                  })}
+                </div>
               </div>
-              
             </div>
           </div>
         </div>
-          
-          <div id="nominations">
-            <div>
-              {movie.Awards}
-            </div>
-          </div>
+
+        <div id="nominations">
+          <div>{movie.Awards}</div>
+        </div>
       </div>
-       
     </>
   );
 }

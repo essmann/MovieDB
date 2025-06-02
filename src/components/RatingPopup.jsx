@@ -24,6 +24,9 @@ function RatingPopup({ props }) {
     function handleStarMouseOver(event) {
         console.log(event);
     }
+    function fillStars(starContainerRef, index){
+        
+    }
     return (
         <div id='ratingPopupContainer' ref={ratingContainer}>
             <div>{props?.Title || 'Title'}</div>
