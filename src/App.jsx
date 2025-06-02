@@ -6,7 +6,7 @@ import { GoogleLogin } from "@react-oauth/google";
 import LoginPage from "./pages/LoginPage";
 import { AuthProvider } from "./context/AuthContext.jsx";
 import RatingsPage from "./pages/RatingsPage.jsx";
-import getProfile from "./api/aspnet/GetProfile.js";
+import GetProfile from "./api/aspnet/GetProfile.js";
 import { useContext } from "react";
 import { AuthContext } from "./context/AuthContext.jsx";
 
@@ -20,7 +20,7 @@ const {user, setUser, isLoggedIn, setIsLoggedIn } = useContext(AuthContext);
 
   useEffect(() => {
   async function fetchUserInfo() {
-    var userInfo = await getProfile();
+    var userInfo = await GetProfile();
     
     console.log("ASYNC SHIT");
     console.log(userInfo);
