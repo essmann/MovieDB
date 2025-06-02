@@ -39,7 +39,7 @@ function MoviePage() {
     <>
       {console.log("movie Page rendering!")}
       <Header />
-      <RatingPopup rating={rating} />
+      <RatingPopup props={movie} />
       <div id="parentContainer">
         <div id="moviePageMovieContainer">
           <div id="movieContainer">

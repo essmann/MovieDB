@@ -23,18 +23,41 @@ function RatingPopup({ props }) {
     }
     function handleStarMouseOver(event) {
         console.log(event);
-    }
-    function fillStars(starContainerRef, index){
+          const index = Number(event.currentTarget.dataset.index);
+          console.log(index);
+          fillStars(index);
+        
         
     }
+   function fillStars(index) {
+       const stars = starContainer.current.children;
+       
+       console.log(stars);
+       console.log("stars bro");
+
+    // Convert to an array to use forEach
+    Array.from(stars).forEach((element, i) => {
+        if(i+1<=index){
+            element.src = star_fill;
+        }
+        else{
+            element.src = star_no_fill;
+        }
+    });
+}
+
     return (
         <div id='ratingPopupContainer' ref={ratingContainer}>
             <div>{props?.Title || 'Title'}</div>
             <div
                 id='starRatingContainer'
                 ref={starContainer}
-                onMouseLeave={() =>
-                    console.log('Hovered outside of the stars container!')
+                onMouseLeave={() =>{
+                        console.log('Hovered outside of the stars container!')
+                        
+                }
+                    
+                    
                 }
                 onMouseOver={handleMouseOver}
             >

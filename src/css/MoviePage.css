@@ -11,20 +11,37 @@
 #ratingPopupContainer{
     width: 500px;
     height: 175px;
-    background: red;
+    background: var(--imdb-gray);
+
+    border-radius: 12px;
+    color: var(--imdb-white);
     position: absolute;
     display: flex;
     flex-direction: column;
     align-items: center;
-     top: 50%;
+    padding: 1rem;
+     top: 35%;
      left: 50%;
      transform: translate(-50%, -50%);
+
+}
+#moviePageRateBtnContainer{
+    justify-content: center;
+    
+    cursor:pointer;
+    border-radius: 12px;
+}
+#moviePageRateBtnContainer:hover{
+    background: var(--imdb-suggestion-hover);
 }
 #starRatingContainer{
     display: flex;
+    height: 2.5rem;
 }
-.star-filled{
-    
+#starRatingContainer >img {
+      fill: gray;          /* default unfilled color */
+  cursor: pointer;
+  transition: fill 0.3s ease;         /* filled star color */
 }
 
 
