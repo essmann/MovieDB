@@ -10,7 +10,7 @@ async function GetMovieById(id) {
     throw new Error(`Failed to fetch movie by Id: ${errorText}`);
   }
 
-  const data = await response.text(); // or response.json() if backend returns JSON
+  const data = await response.json();
   return data;
 }
 

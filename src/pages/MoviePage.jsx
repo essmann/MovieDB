@@ -29,10 +29,10 @@ function MoviePage() {
   }, [params.id]);
   if (!movie) return <div>Loading...</div>;
 
-  let genreArray = movie.Genre.split(",");
-  let actors = movie.Actors.split(",");
-  let writers = movie.Writer.split(",");
-  let directors = movie.Director.split(",");
+  let genreArray = movie.genre.split(",");
+  let actors = movie.actors.split(",");
+  let writers = movie.writer.split(",");
+  let directors = movie.director.split(",");
   movie.imdbVotes = `${Math.floor(parseInt(movie.imdbVotes))}K`;
 
   return (
@@ -44,19 +44,19 @@ function MoviePage() {
         <div id="moviePageMovieContainer">
           <div id="movieContainer">
             <div id="moviePagePoster">
-              <img src={movie.Poster} className="rounded-xl" />
+              <img src={movie.poster} className="rounded-xl" />
             </div>
 
             <div id="movie_page_movie_header_container">
               <div id="movie_page_movie_info_container">
                 <div id="moviePageTitle">
-                  <div className="text-4xl">{movie.Title}</div>
+                  <div className="text-4xl">{movie.title}</div>
                 </div>
 
                 <div id="moviePageMovieInfo">
-                  <div>{movie.Year}</div>
-                  <div>{movie.Rated}</div>
-                  <div>{movie.Runtime}</div>
+                  <div>{movie.year}</div>
+                  <div>{movie.rated}</div>
+                  <div>{movie.runtime}</div>
                 </div>
               </div>
               <div id="movie_page_rating_container">
