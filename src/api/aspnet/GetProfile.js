@@ -1,5 +1,7 @@
 async function GetProfile() {
-  const response = await fetch("https://localhost:7233/profile", {
+      const apiBaseUrl = import.meta.env.VITE_API_URL;
+
+  const response = await fetch(`${apiBaseUrl}/profile`, {
     credentials: "include", // <-- important: send cookies!
   });
 

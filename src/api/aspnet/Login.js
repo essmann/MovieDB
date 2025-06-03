@@ -1,5 +1,7 @@
 async function Login(jwt) {
-  const response = await fetch("https://localhost:7233/login", {
+      const apiBaseUrl = import.meta.env.VITE_API_URL;
+
+  const response = await fetch(`${apiBaseUrl}/login`, {
     method: "POST",
      credentials: "include", // ✅ Important: allow browser to store the cookie
     headers: { "Content-Type": "application/json" },

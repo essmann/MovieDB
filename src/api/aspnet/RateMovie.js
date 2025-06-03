@@ -1,5 +1,7 @@
 async function RateMovie(movieId, rating){
-const endpoint = `https://localhost:7233/users/rating/${movieId}/${rating}`;
+      const apiBaseUrl = import.meta.env.VITE_API_URL;
+
+const endpoint = `${apiBaseUrl}/users/rating/${movieId}/${rating}`;
 const response = await fetch(endpoint, {
     credentials: "include", // <-- important: send cookies!
   });
