@@ -6,6 +6,7 @@ import { useEffect } from "react";
 import { useState } from "react";
  import starIcon from "../assets/star_fill.svg";
 import emptyStarIcon from "../assets/empy_blue_star.svg";
+import no_fill from "../assets/star_no_fill.svg";
 import RatingPopup from "../components/RatingPopup";
 import GetMovieById from "../api/aspnet/GetMovieById";
 function MoviePage() {
@@ -78,13 +79,17 @@ function MoviePage() {
                         visibility == "hidden" ? ratingPopupElement.style.visibility = "visible" : ratingPopupElement.style.visibility = "hidden";
                       }
                     }>
-                      <img
-                        src={emptyStarIcon}
-                        className="mb-2"
-                        width={24}
-                        height={24}
-                      />
-                      <span>Rate</span>
+                      {rating ? (
+                        <div className="flex items-center">
+                          <img src={starIcon} height={24} width={24} alt="Your rating" />
+                          <span className="ml-1">{rating}/10</span>
+                        </div>
+                      ) : (
+                        <div className="flex items-center">
+                          <img src={emptyStarIcon} height={24} width={24} alt="Your rating" />
+                          <span className="ml-1">Rate</span>
+                        </div>
+                      )}
                     </div>
                   </div>
                   <div>
