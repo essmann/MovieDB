@@ -4,6 +4,7 @@ import handleClickRatingPopup from '../event_handlers/handleClickRatingPopup'
 import { useEffect, useRef } from 'react'
 import "../css/MoviePage.css";
 import { useState } from 'react';
+import RateMovie from '../api/aspnet/RateMovie';
 function RatingPopup({ movie, rating, setRating }) {
     const ratingContainer = useRef(null)
     const starContainer = useRef(null)
@@ -60,7 +61,7 @@ function RatingPopup({ movie, rating, setRating }) {
         }
     });
 }
-function handleRateButtonClick(){
+ async function handleRateButtonClick(){
     let selectedIndex = selectedRating || 0;
     
     if(selectedIndex && selectedIndex >0 && selectedIndex <= 10 && selectedIndex !== rating){
@@ -68,7 +69,9 @@ function handleRateButtonClick(){
         setRating(selectedIndex);
 
         ratingContainer.current.style.visibility = 'hidden';
-
+        
+        var response = await RateMovie(movie.imdbID, selectedIndex);
+        console.log("Response from RateMovie: ", response);
         return;
     }
     else{

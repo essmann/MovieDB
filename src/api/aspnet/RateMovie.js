@@ -4,6 +4,7 @@ async function RateMovie(movieId, rating){
 const endpoint = `${apiBaseUrl}/users/rating/${movieId}/${rating}`;
 const response = await fetch(endpoint, {
     credentials: "include", // <-- important: send cookies!
+    method: "POST", // Use POST method to submit the rating
   });
 
   if (!response.ok) {
@@ -11,8 +12,8 @@ const response = await fetch(endpoint, {
     throw new Error(`Failed to rate movie: ${errorText}`);
   }
 
-  const data = await response.json(); // backend returns JSON object
-  return data;
+  
+  return;
 
 
 
