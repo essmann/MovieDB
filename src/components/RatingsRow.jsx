@@ -7,6 +7,10 @@ function RatingsRow({ movie, rating, rank }) {
   console.log("Movie details:", movie);
   console.log("Rating:", rating);
   console.log("Rank:", rank);
+  var rating = movie?.yourRating || rating; // Fallback to rating if movie.rating is undefined
+  var movie = movie?.movie || movie; // Fallback to movie if movie.movie is undefined
+  
+
   return (
 
     <Link to={`/title/${movie?.imdbID}`}>
@@ -41,7 +45,7 @@ function RatingsRow({ movie, rating, rank }) {
 
         {/* Rating */}
         <div className="text-3xl font-bold text-yellow-400">
-          {rating ?? "★ 8.5"}
+          {`${rating} ★` }
         </div>
       </div>
      </Link>

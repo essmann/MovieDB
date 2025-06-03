@@ -37,7 +37,7 @@ function RatingsPage() {
         </h2>
         <div className="space-y-4">
           {ratedMovies?.map((movie, index) => (
-            <RatingsRow key={movie.imdbID || index} movie={movie} rank={index + 1} />
+            <RatingsRow key={movie.movie.imdbID || index} movie={movie} rank={index + 1} />
           ))}
         </div>
       </div>
