@@ -13,7 +13,7 @@ const response = await fetch(endpoint, {
   }
 
   
-  return;
+  return response.json(); // Assuming the backend returns a JSON response
 
 
 
