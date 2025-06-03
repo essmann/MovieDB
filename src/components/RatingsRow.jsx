@@ -3,19 +3,22 @@ import { Link } from "react-router";
 function RatingsRow({ movie, rating, rank }) {
   const tempImg =
     "https://m.media-amazon.com/images/M/MV5BMmFiZGZjMmEtMTA0Ni00MzA2LTljMTYtZGI2MGJmZWYzZTQ2XkEyXkFqcGc@._V1_SX300.jpg";
-
+  console.log("Rendering RatingsRow for movie:", movie);
+  console.log("Movie details:", movie);
+  console.log("Rating:", rating);
+  console.log("Rank:", rank);
   return (
 
     <Link to={`/title/${movie?.imdbID}`}>
          <div
         className="flex items-center gap-4 p-4 border-b border-gray-700 hover:bg-gray-800 transition"
-        data-imdbid={movie.imdbID}
+        data-imdbid={movie.movieId}
       >
         {/* Poster */}
         <div className="w-24 h-36 overflow-hidden rounded-lg shadow-md flex-shrink-0">
           <img
-            src={movie?.Poster || tempImg}
-            alt={movie?.Title}
+            src={movie?.poster || tempImg}
+            alt={movie?.title}
             className="w-full h-full object-cover"
           />
         </div>
@@ -26,13 +29,13 @@ function RatingsRow({ movie, rating, rank }) {
 
           <div className="text-xl font-semibold">
             <span className="text-yellow-400 mr-1">{rank ?? "1."}</span>
-            {movie?.Title}
+            {movie?.title}
           </div>
 
           <div className="flex gap-3 text-sm text-gray-400">
-            <span>{movie?.Year ?? "1968"}</span>
-            <span>{movie?.Runtime ?? "1h 36m"}</span>
-            <span>{movie?.Rated ?? "R"}</span>
+            <span>{movie?.year ?? "1968"}</span>
+            <span>{movie?.runtime ?? "1h 36m"}</span>
+            <span>{movie?.rated ?? "R"}</span>
           </div>
         </div>
 

@@ -139,9 +139,9 @@ console.log("Logged in from hedaera:" + isLoggedIn);
                 >
                   <ul className="">
                     <Link to="/">Your Profile</Link>
-                    <Link to={`/user/${user?.sub}/watchlist`}>Your Watchlist</Link>
-                    <Link to={`/user/${user?.sub}/ratings`}>Your Ratings</Link>
-                    <Link to={`/user/${user?.sub}/lists`}>Your Lists</Link>
+                    <Link to={`/user/${user?.userId}/watchlist`}>Your Watchlist</Link>
+                    <Link to={`/user/${user?.userId}/ratings`}>Your Ratings</Link>
+                    <Link to={`/user/${user?.userId}/lists`}>Your Lists</Link>
                     <Link>Account Settings</Link>
                     <Link onClick={
                       ()=>{
