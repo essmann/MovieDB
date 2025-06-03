@@ -12,7 +12,7 @@ function MoviePage() {
   let params = useParams(); //gets the search parameters
 
   const [movie, setMovie] = useState(null);
-  //const [rating, setRating] = useState(null);
+  const [rating, setRating] = useState(null);
 
   useEffect(() => {
     console.log("UseEffect from moviepage");
@@ -40,7 +40,7 @@ function MoviePage() {
     <>
       {console.log("movie Page rendering!")}
       <Header />
-      <RatingPopup props={movie} />
+      <RatingPopup movie={movie} setRating={setRating} rating={rating} />
       <div id="parentContainer">
         <div id="moviePageMovieContainer">
           <div id="movieContainer">
