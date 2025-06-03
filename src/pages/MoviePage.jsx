@@ -4,7 +4,7 @@ import { useParams } from "react-router";
 import Header from "../components/Header";
 import { useEffect } from "react";
 import { useState } from "react";
-import starIcon from "../assets/imdb_star_yellow.svg";
+ import starIcon from "../assets/star_fill.svg";
 import emptyStarIcon from "../assets/empy_blue_star.svg";
 import RatingPopup from "../components/RatingPopup";
 import GetMovieById from "../api/aspnet/GetMovieById";
@@ -65,7 +65,7 @@ function MoviePage() {
                   <div>
                     <div>IMDB rating</div>
                     <div className="flex">
-                      <img src={starIcon} height={24} width={24}></img>
+                      <img src={starIcon || ""} height={24} width={24}></img>
                       {movie.imdbRating}
                     </div>
                   </div>

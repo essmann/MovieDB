@@ -7,44 +7,7 @@
     --imdb-yellow: #F5C92A;
 }
 
-#ratingPopupTitle{
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: var(--imdb-white);
-    
-}
-#ratePopupRateButton{
-    background: var(--imdb-yellow);
-    color: var(--imdb-gray);
-    border-radius: 12px;
-    margin-top: 0.5rem;
-    margin-bottom: 0.1rem;
-    padding: 0.25rem;
-    width: 10rem;
-    font-weight: bold;
-    font-size: 1.2rem;
-    cursor: pointer;
-}
-#ratePopupRemoveButton{
-    cursor: pointer;
-   
-    
-    
-}
-#ratePopupRemoveButton:hover{
-    cursor: pointer;
-   
-     
-    
-    color: linear-gradient(90deg, #313131 0%, #444444 100%);
 
-}
-#ratePopup
-#ratePopupRateButton:hover{
-      background-image: linear-gradient(rgb(0 0 0/20%) 0 0);
-
-    
-}
 #ratingPopupContainer{
     width: 500px;
     height: 175px;
