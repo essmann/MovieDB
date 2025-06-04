@@ -9,19 +9,28 @@ import emptyStarIcon from "../assets/empy_blue_star.svg";
 import no_fill from "../assets/star_no_fill.svg";
 import RatingPopup from "../components/RatingPopup";
 import GetMovieById from "../api/aspnet/GetMovieById";
+import { useQuery } from "@tanstack/react-query";
+import GetRatedMovies from "../api/aspnet/GetRatedMovies";
 function MoviePage() {
   let params = useParams(); //gets the search parameters
 
   const [movie, setMovie] = useState(null);
   const [rating, setRating] = useState(null);
-
+  const [loading, setLoading] = useState(true); 
+  
   useEffect(() => {
+    
     console.log("UseEffect from moviepage");
     async function fetchMovie() {
       console.log(params.id);
       let movie = await GetMovieById(params.id);
       console.log("Fetched movie from getMovieById");
+      console.log(movie);
+      console.log("MoviePage: movie.YourRating: " + movie.yourRating);
       setMovie(movie);
+      if(movie.yourRating) {
+        setRating(movie.yourRating);
+      }
       //setRating(movie?.MyRating || null);
       // Do something with movie here
 
