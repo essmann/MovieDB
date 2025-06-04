@@ -1,0 +1,11 @@
+@import "tailwindcss";
+:root{
+    --darkest-color: #000000;
+    --imdb-gray: #121212;
+    --imdb-white: #FFFFFF;
+    --imdb-suggestion-hover: #313131;
+}
+#sortByPopup{
+    background: var(--imdb-suggestion-hover);
+    color: var(--imdb-white);
+}
