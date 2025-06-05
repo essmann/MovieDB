@@ -119,7 +119,7 @@ function MoviePage() {
                     );
                   })}
                 </div>
-                <div id="summary">{movie.Plot}</div>
+                <div id="summary">{movie.plot}</div>
                 <div id="director" className="flex ">
                   <label>Director: </label>
                   {directors.map((director, key) => {

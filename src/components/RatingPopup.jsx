@@ -14,6 +14,7 @@ function RatingPopup({ movie, rating, setRating }) {
             console.log(starContainer.current.children)
         }
         fillStars(rating);
+        ratingContainer.current.style.visibility = "hidden";
     }, [])
 
     const debounceTimer = useRef(null)

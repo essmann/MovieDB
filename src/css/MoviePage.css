@@ -89,6 +89,7 @@
     color: gray;
     justify-content: center;
     font-size: 1.1rem;
+    background: #151515;
     
 }
 #moviePageMovieContainer{
@@ -102,9 +103,13 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
-   
-    
+   /* background: var(--imdb-gray); */
+    border-radius: 12px;    
+
       
+    
+}
+#root{
     
 }
 #moviePagePoster *{
