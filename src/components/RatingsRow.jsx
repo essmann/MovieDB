@@ -7,16 +7,15 @@ function RatingsRow({ movie, rating, rank }) {
   console.log("Movie details:", movie);
   console.log("Rating:", rating);
   console.log("Rank:", rank);
-  var rating = movie.userData?.userRating || "N/A";
-  var dateRated = movie.userData?.dateRated || "N/A";
- 
-  
+
+  const userRating = movie.userData?.userRating || "N/A";
+  const dateRated = movie.userData?.dateRated || "N/A";
+  const description = movie?.plot || "No description available.";
 
   return (
-
     <Link to={`/title/${movie?.imdbID}`}>
-         <div
-        className="flex items-center gap-4 p-4 border-b border-gray-700 hover:bg-gray-800 transition"
+      <div
+        className="flex items-start gap-4 p-4 border-b border-gray-700 hover:bg-gray-800 transition"
         data-imdbid={movie.movieId}
       >
         {/* Poster */}
@@ -29,8 +28,10 @@ function RatingsRow({ movie, rating, rank }) {
         </div>
 
         {/* Movie Info */}
-        <div className="flex-1 text-white space-y-1">
-        <div className="text-sm text-gray-400" id="ratingsPageMovieDate">Date added: {dateRated}</div>
+        <div className="flex-1 text-white space-y-2">
+          <div className="text-sm text-gray-400" id="ratingsPageMovieDate">
+            Date added: {dateRated}
+          </div>
 
           <div className="text-xl font-semibold">
             <span className="text-yellow-400 mr-1">{rank ?? "1."}</span>
@@ -42,15 +43,18 @@ function RatingsRow({ movie, rating, rank }) {
             <span>{movie?.runtime ?? "1h 36m"}</span>
             <span>{movie?.rated ?? "R"}</span>
           </div>
+
+          <p className="text-sm text-gray-300 line-clamp-3">
+            {description}
+          </p>
         </div>
 
         {/* Rating */}
-        <div className="text-3xl font-bold text-yellow-400">
-          {`${rating} ★` }
+        <div className="text-3xl font-bold text-yellow-400 mt-1">
+          {`${userRating} ★`}
         </div>
       </div>
-     </Link>
-   
+    </Link>
   );
 }
 
