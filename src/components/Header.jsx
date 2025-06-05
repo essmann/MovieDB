@@ -15,6 +15,8 @@ import handleSearchInput from "../event_handlers/handleSearchInput";
 import { Link } from "react-router";
 import { AuthContext } from "../context/AuthContext";
 import Logout from "../api/aspnet/Logout";
+import Logo from "./Logo.jsx";
+import pinkLogo from "../assets/pinkLogo.svg"
 function Header() {
   const suggestionsRef = useRef(null); //references the element
   const inputRef = useRef(null);
@@ -69,9 +71,10 @@ console.log("Logged in from hedaera:" + isLoggedIn);
             />
             <span className="menuText mr-2">Menu</span>
           </div>
-          <Link to={`/`}>
-            <img src={imdbLogo} width={64} height={32} className="mr-3" />
-          </Link>
+          <Link to={`/`} className="flex justify-center" >
+            <img src={imdbLogo} width={60} height={104} className="ml-2 flex" />
+            {/* <Logo /> */}
+            </Link>
         </div>
         <div className="searchContainer parent" ref={inputRef}>
           <div className="searchContainer" id="searchBox">
@@ -81,7 +84,7 @@ console.log("Logged in from hedaera:" + isLoggedIn);
             </div>
             <input
               placeholder="search IMDb"
-              className="ml-1"
+                className="ml-1"
               id="searchInput"
               onInput={debounce((e) => handleSearchInput(e, setShowItems), 150)}
             />

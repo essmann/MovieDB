@@ -1,0 +1,41 @@
+<svg width="600" height="140" viewBox="0 0 600 140" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Gradient fill for text -->
+    <linearGradient id="textGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ff512f"></stop>
+      <stop offset="100%" stop-color="#f09819"></stop>
+    </linearGradient>
+
+    <!-- Glossy overlay -->
+    <linearGradient id="textGloss" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#fff" stop-opacity="0.4"></stop>
+      <stop offset="100%" stop-color="#fff" stop-opacity="0"></stop>
+    </linearGradient>
+
+    <!-- Drop shadow -->
+    <filter id="shadow" x="-100%" y="-100%" width="300%" height="300%">
+      <feDropShadow dx="0" dy="2.5" stdDeviation="2" flood-color="#000" flood-opacity="0.6"></feDropShadow>
+    </filter>
+
+    <!-- Mask for gloss -->
+    <mask id="glossMask">
+      <text x="50%" y="75" text-anchor="middle" font-family="Montserrat, sans-serif" font-size="80" font-weight="900">
+        MovieDB
+      </text>
+    </mask>
+  </defs>
+
+  <!-- Text body with gradient fill -->
+  <text x="50%" y="75" text-anchor="middle" font-family="Montserrat, sans-serif" font-size="80" font-weight="900" fill="url(#textGradient)" filter="url(#shadow)" letter-spacing="3">
+    MovieDB
+  </text>
+
+  <!-- Glossy top highlight using mask -->
+  <rect x="0" y="0" width="600" height="140" fill="url(#textGloss)" mask="url(#glossMask)"></rect>
+
+  <!-- Optional clapperboard accent (e.g., stylized underline or crown above text) -->
+  <!-- You can uncomment and customize this if you'd like:
+  <polygon points="220,25 235,10 250,25 265,10 280,25" fill="#fff" opacity="0.15"/>
+  -->
+
+</svg>

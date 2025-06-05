@@ -1,0 +1,17 @@
+.bg { fill: #121212; }
+.title { font: bold 28px sans-serif; fill: #ffffff; }
+.dice { fill: #e50914; }
+.dot { fill: #ffffff; }
+@keyframes fadeSlide {
+  0% { opacity: 0; transform: translateX(-20px); }
+  100% { opacity: 1; transform: translateX(0); }
+}
+.logo-group {
+  animation: fadeSlide 1s ease-out forwards;
+  transform-origin: left;
+}
+.movieDBLogo{
+    width: 155px; /* 10% bigger */
+  height: 37px; /* keep aspect ratio */
+  display: block; /* prevent inline space */
+}
