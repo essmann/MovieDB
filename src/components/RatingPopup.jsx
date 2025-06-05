@@ -13,6 +13,7 @@ function RatingPopup({ movie, rating, setRating }) {
         if (!ratingContainer.hasListeners) {
             console.log(starContainer.current.children)
         }
+        fillStars(rating);
     }, [])
 
     const debounceTimer = useRef(null)
