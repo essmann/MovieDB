@@ -33,21 +33,19 @@ function RatingsPage() {
     }
   }, [userId]);
 
-  function sortByDate(movieContainerRef, order = "desc") {
-    let movieContainer = movieContainerRef?.current;
+function sortByDate(movieContainerRef, order = "desc") {
+const ratedMoviesCopy = [...ratedMovies];
+  ratedMoviesCopy.sort((a,b) => {
+    let dateA = new Date(a.userData.dateRated);
+    let dateB = new Date(b.userData.dateRated);
+    console.log(dateA, dateB);
+    return order === "desc" ? dateB - dateA : dateA - dateB;
     
-    console.log(movieContainer);
+  });
+  console.log(ratedMoviesCopy);
+  setRatedMovies(ratedMoviesCopy);
+}
 
-    let sortedMovies = [];
-    Array.from(movieContainer.children)?.forEach(movie => {
-      console.log(movie);
-      let dateRated = movie.querySelector("#ratingsPageMovieDate").textContent.split("Rated on")[1];
-      let parsedDate = Date.parse(dateRated);
-      console.log(parsedDate);
-      console.log(dateRated);
-
-    });
-  }
   return (
     <>
       <Header />
@@ -58,7 +56,7 @@ function RatingsPage() {
           Your Ratings
         </h2>
         <div id="sortingContainer" className="flex justify-end ">
-          <div className="flex items-center relative">
+          <div className="flex items-center relative ">
             <div className="">Sort by</div>
             <img src={arrowIcon} className="w-4 h-4 ml-2 cursor-pointer " onClick={
               () => {
@@ -67,11 +65,11 @@ function RatingsPage() {
               }
             }/>
             {/* Sort By Popup */}
-            <div id="sortByPopup" className="absolute right-1 top-5 mt-2 w-40 bg-gray-800 border  border-gray-700 rounded shadow-lg z-10 text-sm group-hover:block" >
-              <div onClick={()=>sortByDate(movieContainerRef, "desc")}className="px-4 py-2 hover:bg-gray-700 cursor-pointer">Rating (High-Low) </div>
-              <div onClick={()=>sortByDate(movieContainerRef, "asc")} className="px-4 py-2 hover:bg-gray-700 cursor-pointer">Rating (Low-High)</div>
-              <div className="px-4 py-2 hover:bg-gray-700 cursor-pointer">Date Rated (Newest)</div>
-              <div className="px-4 py-2 hover:bg-gray-700 cursor-pointer">Date Rated (Oldest)</div>
+            <div id="sortByPopup" className="absolute right-1 top-5 mt-2 w-40 bg-gray-800 border invisible  border-gray-700 rounded shadow-lg z-10 text-sm group-hover:block" >
+              <div className="px-4 py-2 hover:bg-gray-700 cursor-pointer">Rating (High-Low) </div>
+              <div  className="px-4 py-2 hover:bg-gray-700 cursor-pointer">Rating (Low-High)</div>
+              <div onClick={()=>sortByDate(movieContainerRef, "desc")}className="px-4 py-2 hover:bg-gray-700 cursor-pointer">Date Rated (Newest)</div>
+              <div onClick={()=>sortByDate(movieContainerRef, "asc")} className="px-4 py-2 hover:bg-gray-700 cursor-pointer">Date Rated (Oldest)</div>
             </div>
           </div>
         </div>
