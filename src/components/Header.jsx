@@ -15,8 +15,7 @@ import handleSearchInput from "../event_handlers/handleSearchInput";
 import { Link } from "react-router";
 import { AuthContext } from "../context/AuthContext";
 import Logout from "../api/aspnet/Logout";
-import Logo from "./Logo.jsx";
-import pinkLogo from "../assets/pinkLogo.svg"
+
 function Header() {
   const suggestionsRef = useRef(null); //references the element
   const inputRef = useRef(null);
