@@ -5,12 +5,13 @@ import RatingsRow from "../components/RatingsRow";
 import { useEffect, useState } from "react";
 import GetRatedMovies from "../api/aspnet/GetRatedMovies.js";
 import arrowIcon from "../assets/arrow_down_white.svg";
+import { useRef } from "react";
 function RatingsPage() {
   const { userId } = useParams();
   const [ratedMovies, setRatedMovies] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  
+  const movieContainerRef = useRef(null);
   useEffect(() => {
     async function fetchRatedMovies() {
       setLoading(true);
@@ -32,6 +33,21 @@ function RatingsPage() {
     }
   }, [userId]);
 
+  function sortByDate(movieContainerRef, order = "desc") {
+    let movieContainer = movieContainerRef?.current;
+    
+    console.log(movieContainer);
+
+    let sortedMovies = [];
+    Array.from(movieContainer.children)?.forEach(movie => {
+      console.log(movie);
+      let dateRated = movie.querySelector("#ratingsPageMovieDate").textContent.split("Rated on")[1];
+      let parsedDate = Date.parse(dateRated);
+      console.log(parsedDate);
+      console.log(dateRated);
+
+    });
+  }
   return (
     <>
       <Header />
@@ -52,8 +68,8 @@ function RatingsPage() {
             }/>
             {/* Sort By Popup */}
             <div id="sortByPopup" className="absolute right-1 top-5 mt-2 w-40 bg-gray-800 border  border-gray-700 rounded shadow-lg z-10 text-sm group-hover:block" >
-              <div className="px-4 py-2 hover:bg-gray-700 cursor-pointer">Rating (High-Low)</div>
-              <div className="px-4 py-2 hover:bg-gray-700 cursor-pointer">Rating (Low-High)</div>
+              <div onClick={()=>sortByDate(movieContainerRef, "desc")}className="px-4 py-2 hover:bg-gray-700 cursor-pointer">Rating (High-Low) </div>
+              <div onClick={()=>sortByDate(movieContainerRef, "asc")} className="px-4 py-2 hover:bg-gray-700 cursor-pointer">Rating (Low-High)</div>
               <div className="px-4 py-2 hover:bg-gray-700 cursor-pointer">Date Rated (Newest)</div>
               <div className="px-4 py-2 hover:bg-gray-700 cursor-pointer">Date Rated (Oldest)</div>
             </div>
@@ -68,10 +84,10 @@ function RatingsPage() {
           <p>You have not rated any movies yet.</p>
         )}
 
-        <div className="space-y-4">
+        <div className="space-y-4" ref={movieContainerRef}>
           {ratedMovies.map((movie, index) => (
             <RatingsRow
-              key={movie.movie.imdbID || index}
+              key={index}
               movie={movie}
               rank={index + 1}
             />

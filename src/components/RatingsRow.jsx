@@ -7,8 +7,9 @@ function RatingsRow({ movie, rating, rank }) {
   console.log("Movie details:", movie);
   console.log("Rating:", rating);
   console.log("Rank:", rank);
-  var rating = movie?.yourRating || rating; // Fallback to rating if movie.rating is undefined
-  var movie = movie?.movie || movie; // Fallback to movie if movie.movie is undefined
+  var rating = movie.userData?.userRating || "N/A";
+  var dateRated = movie.userData?.dateRated || "N/A";
+ 
   
 
   return (
@@ -29,7 +30,7 @@ function RatingsRow({ movie, rating, rank }) {
 
         {/* Movie Info */}
         <div className="flex-1 text-white space-y-1">
-          <div className="text-sm text-gray-400">Rated on May 26, 2025</div>
+        <div className="text-sm text-gray-400" id="ratingsPageMovieDate">Date added: {dateRated}</div>
 
           <div className="text-xl font-semibold">
             <span className="text-yellow-400 mr-1">{rank ?? "1."}</span>

@@ -1,6 +1,6 @@
 async function GetMovieBySearch(search) {
       const apiBaseUrl = import.meta.env.VITE_API_URL;
-  const response = await fetch(`${apiBaseUrl}/movies/search/${search}`, {
+  const response = await fetch(`${apiBaseUrl}/movie/search/${search}`, {
    
      credentials: "include" // ✅ Important: allow browser to store the cookie
    

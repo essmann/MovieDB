@@ -1,7 +1,7 @@
 async function Logout() {
       const apiBaseUrl = import.meta.env.VITE_API_URL;
 
-  const response = await fetch(`${apiBaseUrl}/logout`, {
+  const response = await fetch(`${apiBaseUrl}/auth/logout`, {
    
      credentials: "include", // ✅ Important: allow browser to store the cookie
     headers: { "Content-Type": "application/json" },

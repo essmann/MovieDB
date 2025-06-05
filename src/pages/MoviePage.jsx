@@ -23,13 +23,15 @@ function MoviePage() {
     console.log("UseEffect from moviepage");
     async function fetchMovie() {
       console.log(params.id);
-      let movie = await GetMovieById(params.id);
+      
+      let movie = await GetMovieById(params.id, true);
+      console.log(typeof(movie) + "type of movie");
       console.log("Fetched movie from getMovieById");
       console.log(movie);
       console.log("MoviePage: movie.YourRating: " + movie.yourRating);
       setMovie(movie);
-      if(movie.yourRating) {
-        setRating(movie.yourRating);
+      if(movie.userData) {
+        setRating(movie.userData.userRating);
       }
       //setRating(movie?.MyRating || null);
       // Do something with movie here
