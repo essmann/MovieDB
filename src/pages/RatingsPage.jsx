@@ -11,6 +11,8 @@ function RatingsPage() {
   const [ratedMovies, setRatedMovies] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const popupRef = useRef(null);
+  const triggerRef = useRef(null);
   const movieContainerRef = useRef(null);
   useEffect(() => {
     async function fetchRatedMovies() {
@@ -33,6 +35,25 @@ function RatingsPage() {
     }
   }, [userId]);
 
+
+// Close popup on outside click
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (
+        popupRef.current &&
+        !popupRef.current.contains(event.target) &&
+        !triggerRef.current.contains(event.target)
+      ) {
+        popupRef.current.style.visibility = "hidden"; // Hide the popup
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
+
 function sortByDate(movieContainerRef, order = "desc") {
 const ratedMoviesCopy = [...ratedMovies];
   ratedMoviesCopy.sort((a,b) => {
@@ -45,13 +66,25 @@ const ratedMoviesCopy = [...ratedMovies];
   console.log(ratedMoviesCopy);
   setRatedMovies(ratedMoviesCopy);
 }
+function sortByRating(movieContainerRef, order = "desc") {
+const ratedMoviesCopy = [...ratedMovies];
+  ratedMoviesCopy.sort((a,b) => {
+    let ratingA = a.userData.userRating;
+    let ratingB = b.userData.userRating;
+    
+    return order === "desc" ? ratingB - ratingA : ratingA - ratingB;
+    
+  });
+  console.log(ratedMoviesCopy);
+  setRatedMovies(ratedMoviesCopy);
+}
 
   return (
     <>
       <Header />
 
        
-      <div className="max-w-4xl mx-auto p-6 text-white">
+      <div className="max-w-4xl mx-auto p-6 text-white" ref={triggerRef}>
         <h2 className="text-2xl font-bold mb-4 border-b border-gray-600 pb-2">
           Your Ratings
         </h2>
@@ -65,9 +98,9 @@ const ratedMoviesCopy = [...ratedMovies];
               }
             }/>
             {/* Sort By Popup */}
-            <div id="sortByPopup" className="absolute right-1 top-5 mt-2 w-40 bg-gray-800 border invisible  border-gray-700 rounded shadow-lg z-10 text-sm group-hover:block" >
-              <div className="px-4 py-2 hover:bg-gray-700 cursor-pointer">Rating (High-Low) </div>
-              <div  className="px-4 py-2 hover:bg-gray-700 cursor-pointer">Rating (Low-High)</div>
+            <div id="sortByPopup" ref= {popupRef} className="absolute right-1 top-5 mt-2 w-40 bg-gray-800 border invisible  border-gray-700 rounded shadow-lg z-10 text-sm group-hover:block" >
+              <div onClick={()=>sortByDate(movieContainerRef, "desc")} className="px-4 py-2 hover:bg-gray-700 cursor-pointer">Rating (High-Low) </div>
+              <div  onClick={()=>sortByRating(movieContainerRef, "asc")} className="px-4 py-2 hover:bg-gray-700 cursor-pointer">Rating (Low-High)</div>
               <div onClick={()=>sortByDate(movieContainerRef, "desc")}className="px-4 py-2 hover:bg-gray-700 cursor-pointer">Date Rated (Newest)</div>
               <div onClick={()=>sortByDate(movieContainerRef, "asc")} className="px-4 py-2 hover:bg-gray-700 cursor-pointer">Date Rated (Oldest)</div>
             </div>
