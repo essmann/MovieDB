@@ -62,6 +62,7 @@ const {user, setUser, isLoggedIn, setIsLoggedIn } = useContext(AuthContext);
           <Route path="/login" element={<LoginPage />} />
           <Route path="*" element={<div>Default route!</div>} />
         </Routes>
+       
       </BrowserRouter>
   
   );

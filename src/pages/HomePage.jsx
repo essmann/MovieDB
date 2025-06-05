@@ -1,4 +1,5 @@
 import Header from "../components/Header";
+
 import {
   SiReact,
   SiTailwindcss,
@@ -82,6 +83,7 @@ function HomePage() {
           </p>
         </div>
       </main>
+       
     </>
   );
 }
